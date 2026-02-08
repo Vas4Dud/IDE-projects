@@ -88,9 +88,9 @@ void I2C1_init(uint16_t targetAddress)
 
 void I2C1_putchar(unsigned char ch)
 {
-	while(){
-
-	}
+	while(I2C1->MFIFOSR & I2C_MFIFOSR_TXFIFOCNT_MASK == I2C_MFIFOSR_TXFIFOCNT_MINIMUM);//TXFIFOCNT number of Bytes  left into the TX FIFO > 0
+	//if my understinding is backwards: 
+	//while(I2C1->MFIFOSR & I2C_MFIFOSR_TXFIFOCNT_MASK == I2C_MFIFOSR_TXFIFOCNT_MAXIMUM)
 	I2C1->MTXDATA = ch & I2C_MTXDATA_VALUE_MASK;
 }
 
