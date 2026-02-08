@@ -43,7 +43,7 @@ void I2C1_put(unsigned char *data, uint16_t data_size);
 
 void I2C1_init(uint16_t targetAddress)
 {
-	//enable Uart0 module
+	//enable IC2 module
 	if ((I2C1->GPRCM.PWREN & I2C_PWREN_ENABLE_ENABLE) 
 			!= I2C_PWREN_ENABLE_ENABLE )
 	{
@@ -74,7 +74,7 @@ void I2C1_init(uint16_t targetAddress)
 	//run CLK at 400kHz, SCL_LP = 6, SCL_HP = 4, TPR = 0x09
 	I2C1->MASTER.MTPR = 0x09;
 
-  I2C1->MASTER.MFIFOCTL = (I2C_MFIFOCTL_RXTRIG_LEVEL_1 |
+  	I2C1->MASTER.MFIFOCTL = (I2C_MFIFOCTL_RXTRIG_LEVEL_1 |
 														I2C_MFIFOCTL_TXTRIG_EMPTY);
 												
 	I2C1->MASTER.MCR |= I2C_MCR_CLKSTRETCH_DISABLE;
@@ -88,12 +88,34 @@ void I2C1_init(uint16_t targetAddress)
 
 void I2C1_putchar(unsigned char ch)
 {
-	
+	while(){
+
+	}
+	I2C1->MTXDATA = ch & I2C_MTXDATA_VALUE_MASK;
 }
 
 void I2C1_put(unsigned char *data, uint16_t data_size)
 {
-	
+	//set control register to data size
+	uint32_t data_size_processed = (data_size << I2C_MCTR_MBLEN_OFS) & I2C_MCTR_MBLEN_MASK;
+	I2C1->MCTR |= (data_size_processed);
+	//set direction bit 0
+	I2C1->MSA &= ~I2C_MSA_DIR_MASK;
+	//enable STOP condition
+	I2C1->MCTR |= I2C_MCTR_STOP_ENABLE;
+	//enable START/repeated start
+	I2C1->MCTR |= I2C_MCTR_START_ENABLE;
+	//enable BURSTRUN
+	I2C1->MCTR |= I2C_MCTR_BURSTRUN_ENABLE;
+
+	//loop putchar
+	for (int i = 0; i<data_size; i++){
+		I2C1_putchar(data[i]);
+	}
+	//wait for status idle			
+	while(!(I2C1->MSR & I2C_MSR_IDLE_SET));
+	//disable BURSTRUN
+	I2C1->MCTR |= I2C_MCTR_BURSTRUN_DISABLE;
 }
 
 #endif // _I2C_H_
