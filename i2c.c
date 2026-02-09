@@ -88,34 +88,33 @@ void I2C1_init(uint16_t targetAddress)
 
 void I2C1_putchar(unsigned char ch)
 {
-	while(I2C1->MFIFOSR & I2C_MFIFOSR_TXFIFOCNT_MASK == I2C_MFIFOSR_TXFIFOCNT_MINIMUM);//TXFIFOCNT number of Bytes  left into the TX FIFO > 0
+	while((I2C1->MASTER.MFIFOSR & I2C_MFIFOSR_TXFIFOCNT_MASK) == I2C_MFIFOSR_TXFIFOCNT_MINIMUM);//TXFIFOCNT number of Bytes  left into the TX FIFO > 0
 	//if my understinding is backwards: 
 	//while(I2C1->MFIFOSR & I2C_MFIFOSR_TXFIFOCNT_MASK == I2C_MFIFOSR_TXFIFOCNT_MAXIMUM)
-	I2C1->MTXDATA = ch & I2C_MTXDATA_VALUE_MASK;
+	I2C1->MASTER.MTXDATA = ch & I2C_MTXDATA_VALUE_MASK;
 }
 
 void I2C1_put(unsigned char *data, uint16_t data_size)
 {
 	//set control register to data size
-	uint32_t data_size_processed = (data_size << I2C_MCTR_MBLEN_OFS) & I2C_MCTR_MBLEN_MASK;
-	I2C1->MCTR |= (data_size_processed);
+	I2C1->MASTER.MCTR |= ((uint32_t)data_size << I2C_MCTR_MBLEN_OFS) & I2C_MCTR_MBLEN_MASK;
 	//set direction bit 0
-	I2C1->MSA &= ~I2C_MSA_DIR_MASK;
+	I2C1->MASTER.MSA &= ~I2C_MSA_DIR_MASK;
 	//enable STOP condition
-	I2C1->MCTR |= I2C_MCTR_STOP_ENABLE;
+	I2C1->MASTER.MCTR |= I2C_MCTR_STOP_ENABLE;
 	//enable START/repeated start
-	I2C1->MCTR |= I2C_MCTR_START_ENABLE;
+	I2C1->MASTER.MCTR |= I2C_MCTR_START_ENABLE;
 	//enable BURSTRUN
-	I2C1->MCTR |= I2C_MCTR_BURSTRUN_ENABLE;
+	I2C1->MASTER.MCTR |= I2C_MCTR_BURSTRUN_ENABLE;
 
 	//loop putchar
 	for (int i = 0; i<data_size; i++){
 		I2C1_putchar(data[i]);
 	}
 	//wait for status idle			
-	while(!(I2C1->MSR & I2C_MSR_IDLE_SET));
+	while(!(I2C1->MASTER.MSR & I2C_MSR_IDLE_SET));
 	//disable BURSTRUN
-	I2C1->MCTR |= I2C_MCTR_BURSTRUN_DISABLE;
+	I2C1->MASTER.MCTR |= I2C_MCTR_BURSTRUN_DISABLE;
 }
 
 #endif // _I2C_H_
