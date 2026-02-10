@@ -12,7 +12,7 @@
  * @brief   : I2C usage c file
  * @details : I2C functionality testing
  * 
- * @author Vassily Dudkin
+ * @author Vassily Dudkin and Samuel Pepperman
  * @date 1/28/2026
  * ******************************************************************************
 */
@@ -25,7 +25,7 @@ int main(void)
 	OLED_Init();
 	
 	part1();
-	part2();
+	//part2();
 }
 
 void part1(void)
@@ -44,21 +44,6 @@ void part1(void)
 	OLED_PrintLine(string2);
 	OLED_PrintLine(string3);
 	OLED_PrintLine(string4);
-	
-		
-	//for(unsigned int j = 0; j < string1_len; j++){
-	//	OLED_draw(0,(int)j,string1[j]);
-	//}
-	//for(unsigned int j = 0; j < string2_len; j++){
-	//	OLED_draw(1,(int)j,string2[j]);
-	//}
-	//for(unsigned int j = 0; j < string3_len; j++){
-	//	OLED_draw(2,(int)j,string3[j]);
-	//}
-	//for(unsigned int j = 0; j < string4_len; j++){
-	//	OLED_draw(3,(int)j,strng4[j]);
-	//}
-
 }
 
 void part2(void)
