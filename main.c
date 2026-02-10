@@ -30,20 +30,28 @@ int main(void)
 
 void part1(void)
 {
+	OLED_display_clear();
 	char* string1 = "Hello World";
-	//unsigned int string1_len = strlen(string1);
 	char* string2 = "How Are You?";
-	//unsigned int string2_len = strlen(string2);
 	char* string3 = "Goodbye";
-	//unsigned int string3_len = strlen(string3);
 	char* string4 = "Sam and Vassily";
-	//unsigned int string4_len = strlen(string4);
 
-	
+	while(1){
+	OLED_display_clear();
 	OLED_PrintLine(string1);
 	OLED_PrintLine(string2);
 	OLED_PrintLine(string3);
 	OLED_PrintLine(string4);
+		
+	for (volatile long i = 0; i < 10000; i++){}
+	OLED_display_clear();
+	uint16_t line[128];
+  for (short i = 0; i<128; i++){
+	line[i] = (uint16_t)(10*(i) + 5);
+	}		
+	OLED_DisplayCameraData(line);
+	for (volatile long i = 0; i < 10000; i++){}
+	}
 }
 
 void part2(void)
