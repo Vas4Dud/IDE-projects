@@ -5,7 +5,7 @@
 #include "lab1\switches.h"
 #include "lab4\I2C\i2c.h"
 #include "lab4\I2C\oled.h"
-
+#include "lab1\leds.h"
 /**
  * ******************************************************************************
  * @file    : main.c
@@ -22,6 +22,7 @@ void part2(void);
 int main(void)
 {
 	S1_init();
+	LED1_init();
 	OLED_Init();
 	
 	part1();
@@ -56,30 +57,50 @@ void part1(void)
 
 void part2(void)
 {
+
 	int count = 0;
+	OLED_display_clear();
 	while(true)
 	{
 		if (count == 0)
 		{
 			//display first image
-			OLED_draw(2, 2, 'x');
+			OLED_display_clear();
+			OLED_Print(1, 1, "        o       ");
+			OLED_Print(2, 1, "    o       o   ");
+			OLED_Print(3, 1, "   o  O   O  o  ");
+			OLED_Print(4, 1, "   o   ---   o   ");
+      count++;
 		}
 		if(S1_pressed())
 		{
 			//display a second image
-			count++;
 			if (count == 1)
 			{
-				OLED_draw(2, 2, 'b');
+				OLED_display_clear();
+				OLED_Print(1, 1, "        o       ");
+				OLED_Print(2, 1, "    o       o   ");
+				OLED_Print(3, 1, "   o  O   O  o  ");
+				OLED_Print(4, 1, "   o   \\\_/  o   ");
 			}
 			if (count == 2)
 			{
 				//display third image
-				OLED_draw(2, 2, 'z');
+				OLED_display_clear();
+				OLED_Print(1, 1, "        o       ");
+				OLED_Print(2, 1, "    o       o   ");
+				OLED_Print(3, 1, "   o  O   O  o  ");
+				OLED_Print(4, 1, "   o    O    o   ");
 			}
+
+			
 			if (count == 3)
 			{
 				count = 0;
+			}
+			else
+			{
+				count++;
 			}
 		}
 	}
