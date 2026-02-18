@@ -6,6 +6,8 @@
 #include "lab1/leds.h"
 #include "lab2/uart.h"
 #include "uart_extras.h"
+#include <string.h>
+#include <stdio.h>
 static uint8_t sw1_state = 0;//0 = toggle, 1 = off
 static uint8_t sw2_state = 0;//0 = timer off, 1 = timer on
 static uint8_t sw2_state_counter = 0;//LED cycle var
@@ -14,6 +16,7 @@ int main(){
 	UART0_init();
 	LED1_init();
 	LED2_init();
+	ADC0_init();
 	S1_init_interrupt();
 	S2_init_interrupt();
 	TIMG6_init(12500,199);//80Mhz Busclk/(8*200) = 50kHz. 25000/50kHz = 0.5Hz for each interrupt
@@ -22,11 +25,14 @@ int main(){
 }
 
 void TIMG6_IRQHandler(void){
-	if (sw1_state == 0){
-		LED1_set(LED1_TOGGLE);
-	}else{
-		LED1_set(LED1_OFF);
-	}
+	uint32_t read_val = ADC0_getVal();
+	double degree_cel = (3300-read_val)/10.0;
+	double degree_far = (degree_cel * (9.0 / 5.0)) + 32.0;
+	UART0_put("Celcius: ");
+	UART0_printFloat(degree_cel);
+	UART0_put(" Farenheit: ");
+	UART0_printFloat(degree_far);
+	UART0_put("\r\n");
 }
 
 void TIMG12_IRQHandler(void){
