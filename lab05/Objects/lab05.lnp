@@ -1,6 +1,9 @@
 --cpu Cortex-M0+
 ".\objects\main.o"
 ".\objects\startup_mspm0g350x_uvision.o"
+".\objects\timers.o"
+".\objects\adc12.o"
+".\objects\leds.o"
 ".\objects\switches.o"
 --strict --scatter "..\source\ti\devices\msp\m0p\linker_files\keil\mspm0g3507.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
