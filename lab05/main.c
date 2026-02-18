@@ -24,6 +24,8 @@ int main(){
 void TIMG6_IRQHandler(void){
 	if (sw1_state == 0){
 		LED1_set(LED1_TOGGLE);
+	}else{
+		LED1_set(LED1_OFF);
 	}
 }
 
@@ -46,6 +48,7 @@ void GROUP1_IRQHandler(void){
 		sw2_state^=1;//toggle state
 		if (sw2_state == 0){//if state was 1 and is now 0, print timer and reset
 			UART0_printDec(ms_counter);
+			UART0_put("\n\r");
 			ms_counter = 0;
 			LED2_set(LED2_OFF);
 		}else{
