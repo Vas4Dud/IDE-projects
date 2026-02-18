@@ -5,6 +5,9 @@
 ".\objects\adc12.o"
 ".\objects\leds.o"
 ".\objects\switches.o"
+".\objects\uart.o"
+".\objects\sysctl.o"
+".\objects\uart_extras.o"
 --strict --scatter "..\source\ti\devices\msp\m0p\linker_files\keil\mspm0g3507.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

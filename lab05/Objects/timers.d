@@ -1,15 +1,15 @@
 ./objects/timers.o: timers.c ..\source\ti\devices\msp\msp.h \
   ..\source\ti\devices\DeviceFamily.h \
   ..\source\ti\devices\msp\m0p\mspm0g350x.h \
-  D:\keil\core\ARM\ARMCLANG\Bin\..\include\stdint.h \
-  D:\keil\core\ARM\ARMCLANG\Bin\..\include\stdbool.h \
-  D:\keil\packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\core_cm0plus.h \
-  D:\keil\packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_version.h \
-  D:\keil\packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_compiler.h \
-  D:\keil\packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_armclang.h \
-  D:\keil\core\ARM\ARMCLANG\Bin\..\include\arm_compat.h \
-  D:\keil\core\ARM\ARMCLANG\Bin\..\include\arm_acle.h \
-  D:\keil\packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\mpu_armv7.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
+  C:\Users\samp\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\core_cm0plus.h \
+  C:\Users\samp\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_version.h \
+  C:\Users\samp\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_compiler.h \
+  C:\Users\samp\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_armclang.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\arm_compat.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\arm_acle.h \
+  C:\Users\samp\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\mpu_armv7.h \
   ..\source\ti\devices\msp\peripherals\hw_adc12.h \
   ..\source\ti\devices\msp\peripherals\hw_aes.h \
   ..\source\ti\devices\msp\peripherals\hw_comp.h \

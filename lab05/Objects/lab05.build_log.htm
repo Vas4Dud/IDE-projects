@@ -5,11 +5,11 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.31.0.0
 Copyright (C) 2020 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Poop Poop, Poop, LIC=----
+License Information: Damien Burger, Rochester Institute of Technology, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.31.0.0
-Toolchain Path:  D:\keil\core\ARM\ARMCLANG\Bin
+Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
 C Compiler:      ArmClang.exe V6.14
 Assembler:       Armasm.exe V6.14
 Linker/Locator:  ArmLink.exe V6.14
@@ -21,38 +21,59 @@ Target DLL:      CMSIS_AGDI.dll V1.32.6.0
 Dialog DLL:      TARMCM1.DLL V1.14.2.0
  
 <h2>Project:</h2>
-D:\IDE-projects\lab05\lab05.uvprojx
-Project File Date:  02/17/2026
+C:\Users\samp\Downloads\IDE-projects\lab05\lab05.uvprojx
+Project File Date:  02/18/2026
 
 <h2>Output:</h2>
-*** Using Compiler 'V6.14', folder: 'D:\keil\core\ARM\ARMCLANG\Bin'
+*** Using Compiler 'V6.14', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Target 1'
 assembling startup_mspm0g350x_uvision.s...
-compiling adc12.c...
-compiling leds.c...
 compiling timers.c...
-compiling switches.c...
-main.c(41): warning: no newline at end of file [-Wnewline-eof]
-}
- ^
-main.c(31): warning: no previous prototype for function 'GROUP1_IRQHandler' [-Wmissing-prototypes]
+main.c(24): warning: no previous prototype for function 'TIMG6_IRQHandler' [-Wmissing-prototypes]
+void TIMG6_IRQHandler(void){
+     ^
+main.c(24): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void TIMG6_IRQHandler(void){
+^
+static 
+main.c(30): warning: no previous prototype for function 'TIMG12_IRQHandler' [-Wmissing-prototypes]
+void TIMG12_IRQHandler(void){
+     ^
+main.c(30): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void TIMG12_IRQHandler(void){
+^
+static 
+main.c(37): warning: no previous prototype for function 'GROUP1_IRQHandler' [-Wmissing-prototypes]
 void GROUP1_IRQHandler(void){
      ^
-main.c(31): note: declare 'static' if the function is not intended to be used outside of this translation unit
+main.c(37): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void GROUP1_IRQHandler(void){
 ^
 static 
-main.c(9): warning: unused variable 'sw1_state' [-Wunused-variable]
-static int sw1_state = 0;
-           ^
-main.c(10): warning: unused variable 'sw2_state_counter' [-Wunused-variable]
-static int sw2_state_counter = 0;
-           ^
-4 warnings generated.
+3 warnings generated.
 compiling main.c...
+compiling adc12.c...
+compiling leds.c...
+compiling switches.c...
+../lib/lab2/uart.c(54): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        UART0->IBRD = ((int)int_part & UART_IBRD_DIVINT_MASK);                                            //integer part
+                       ^~~~~~~~~~~~~ ~
+../lib/lab2/uart.c(55): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        UART0->FBRD = ((int)((frac_part*64)+0.5) & UART_FBRD_DIVFRAC_MASK); //fractional part is multiplied by 64 to get in the 6 digit range, 
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~ ~
+../lib/lab2/uart.c(121): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        UART1->IBRD = ((int)int_part & UART_IBRD_DIVINT_MASK);                                            //integer part
+                       ^~~~~~~~~~~~~ ~
+../lib/lab2/uart.c(122): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        UART1->FBRD = ((int)((frac_part*64)+0.5) & UART_FBRD_DIVFRAC_MASK); //fractional part is multiplied by 64 to get in the 6 digit range, 
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~ ~
+4 warnings generated.
+compiling uart.c...
+compiling sysctl.c...
+compiling uart_extras.c...
 linking...
-Program Size: Code=1272 RO-data=208 RW-data=0 ZI-data=1120  
-".\Objects\lab05.axf" - 0 Error(s), 4 Warning(s).
+Program Size: Code=4592 RO-data=224 RW-data=4 ZI-data=1132  
+".\Objects\lab05.axf" - 0 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -69,7 +90,7 @@ Package Vendor: TexasInstruments
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\_Target_1
-  D:\keil\packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include
+  C:\Users\samp\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include
 
 <h2>Collection of Component Files used:</h2>
 

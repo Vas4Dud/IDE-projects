@@ -413,6 +413,11 @@
               <FileType>1</FileType>
               <FilePath>.\switches.c</FilePath>
             </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\lab2\uart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -442,6 +447,16 @@
               <FileName>timers.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\lib\lab5\timers.h</FilePath>
+            </File>
+            <File>
+              <FileName>sysctl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\sysctl.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart_extras.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\uart_extras.c</FilePath>
             </File>
           </Files>
         </Group>
