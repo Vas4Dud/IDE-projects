@@ -12,6 +12,11 @@ static uint8_t sw1_state = 0;//0 = toggle, 1 = off
 static uint8_t sw2_state = 0;//0 = timer off, 1 = timer on
 static uint8_t sw2_state_counter = 0;//LED cycle var
 static int32_t ms_counter = 0;
+
+uint8_t cameraData_complete = 0;
+uint16_t cameraData[128] = {};
+unsigned pixel_counter = 0;
+	
 int main(){
 	UART0_init();
 	LED1_init();
@@ -26,7 +31,7 @@ int main(){
 
 void TIMG6_IRQHandler(void){
 	uint32_t read_val = ADC0_getVal();
-	double degree_cel = (3300-read_val)/10.0;
+	double degree_cel = (read_val-500)/10.0;
 	double degree_far = (degree_cel * (9.0 / 5.0)) + 32.0;
 	UART0_put("Celcius: ");
 	UART0_printFloat(degree_cel);

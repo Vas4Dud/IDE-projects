@@ -6,6 +6,7 @@
 ".\objects\leds.o"
 ".\objects\switches.o"
 ".\objects\uart.o"
+".\objects\camera.o"
 ".\objects\sysctl.o"
 ".\objects\uart_extras.o"
 --strict --scatter "..\source\ti\devices\msp\m0p\linker_files\keil\mspm0g3507.sct"
