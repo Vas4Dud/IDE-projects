@@ -1,9 +1,9 @@
 #include <ti/devices/msp/msp.h>
-#include "lab5\camera.h"
-
+#include "lab5/camera.h"
+#include "lab5/adc12.h"
 
 static uint8_t cameraData_complete = 0;//0 = not ready, 1 = ready
-static uint16_t cameraData[128] = {};
+static uint32_t cameraData[128];
 static unsigned pixel_counter = 0;
 
 /**
@@ -33,10 +33,34 @@ uint16_t* Camera_getData(void){
 }
 
 void TIMG6_IRQHandler(void){
+	//ensure clk timer disabled
+	
+	//check if there is no data to process
+	if (cameraData_complete == 1){
+		return;
+	}
+	//Toggle SI and CLK
+	
+	
+	//enable clk timer
 	
 }
 
 
 void TIMG0_IRQHandler(void){
+	//pulse clk pin
 	
+	//read ADC0
+	uint32_t read_val = ADC0_getVal();
+	//Populate cameraData and incriment index
+	cameraData[pixel_counter] = read_val;
+	pixel_counter++;
+	//If data is full
+	if (pixel_counter >= 128){
+		cameraData_complete = 1;
+		//disable clk timer
+		
+		//reset index
+		pixel_counter = 0;
+	}
 }
