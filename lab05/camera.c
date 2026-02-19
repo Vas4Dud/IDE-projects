@@ -2,9 +2,9 @@
 #include "lab5\camera.h"
 
 
-extern uint8_t cameraData_complete;//0 = not ready, 1 = ready
-extern uint16_t cameraData[128];
-extern unsigned pixel_counter;
+static uint8_t cameraData_complete = 0;//0 = not ready, 1 = ready
+static uint16_t cameraData[128] = {};
+static unsigned pixel_counter = 0;
 
 /**
  * @brief Initialize camera associated components
@@ -30,4 +30,13 @@ uint8_t Camera_isDataReady(void){
 */
 uint16_t* Camera_getData(void){
 	return cameraData;
+}
+
+void TIMG6_IRQHandler(void){
+	
+}
+
+
+void TIMG0_IRQHandler(void){
+	
 }

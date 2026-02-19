@@ -1,6 +1,6 @@
 #include <ti/devices/msp/msp.h>
 #include "lab5/switches.h"
-#include "lab5/camera.h"
+//#include "lab5/camera.h"
 #include "lab5/adc12.h"
 #include "lab5/timers.h"
 #include "lab1/leds.h"
@@ -13,10 +13,7 @@ static uint8_t sw2_state = 0;//0 = timer off, 1 = timer on
 static uint8_t sw2_state_counter = 0;//LED cycle var
 static int32_t ms_counter = 0;
 
-uint8_t cameraData_complete = 0;
-uint16_t cameraData[128] = {};
-unsigned pixel_counter = 0;
-	
+
 int main(){
 	UART0_init();
 	LED1_init();
