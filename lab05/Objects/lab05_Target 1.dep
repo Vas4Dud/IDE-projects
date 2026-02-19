@@ -1,6 +1,6 @@
 Dependencies for Project 'lab05', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 6140000::V6.14::ARMCLANG
-F (.\main.c)(0x69975115)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-3 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../lib -I ../source-I./RTE/_Target_1-IC:/Users/samp/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-D__UVISION_VERSION="531" -D_RTE_ -D_RTE_ -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/main.o -MD)
+F (.\main.c)(0x6997A1CF)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-3 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../lib -I ../source-I./RTE/_Target_1-IC:/Users/samp/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-D__UVISION_VERSION="531" -D_RTE_ -D_RTE_ -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/main.o -MD)
 I (..\source\ti\devices\msp\msp.h)(0x69680E6F)
 I (..\source\ti\devices\DeviceFamily.h)(0x69680E6F)
 I (..\source\ti\devices\msp\m0p\mspm0g350x.h)(0x69680E6F)
@@ -40,7 +40,6 @@ I (..\source\ti\devices\msp\peripherals\m0p\hw_debugss.h)(0x69680E71)
 I (..\source\ti\devices\msp\peripherals\m0p\hw_sysctl.h)(0x69680E72)
 I (..\source\ti\devices\msp\peripherals\m0p\sysctl\hw_sysctl_mspm0g1x0x_g3x0x.h)(0x69680E72)
 I (..\lib\lab5\switches.h)(0x698CE2E0)
-I (..\lib\lab5\camera.h)(0x698CE2E0)
 I (..\lib\lab5\adc12.h)(0x698CE2E0)
 I (..\lib\lab5\timers.h)(0x698CE2E0)
 I (..\lib\lab1\leds.h)(0x6979933B)
@@ -49,7 +48,7 @@ I (..\lib\uart_extras.h)(0x69680E6E)
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x5ED6ECE4)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x5ED6ECE4)
 F (..\source\ti\devices\msp\m0p\startup_system_files\keil\startup_mspm0g350x_uvision.s)(0x69714F9C)(--target=arm-arm-none-eabi -mcpu=cortex-m0plus -masm=auto -c-gdwarf-3 -Wa,armasm,--pd,"__EVAL SETA 1"-I./RTE/_Target_1-IC:/Users/samp/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 531" -Wa,armasm,--pd,"_RTE_ SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1" -Wa,armasm,--pd,"__MSPM0G3507__ SETA 1"-o ./objects/startup_mspm0g350x_uvision.o)
-F (.\timers.c)(0x69950078)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-3 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../lib -I ../source-I./RTE/_Target_1-IC:/Users/samp/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-D__UVISION_VERSION="531" -D_RTE_ -D_RTE_ -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/timers.o -MD)
+F (.\timers.c)(0x69975FEA)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-3 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../lib -I ../source-I./RTE/_Target_1-IC:/Users/samp/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-D__UVISION_VERSION="531" -D_RTE_ -D_RTE_ -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/timers.o -MD)
 I (..\source\ti\devices\msp\msp.h)(0x69680E6F)
 I (..\source\ti\devices\DeviceFamily.h)(0x69680E6F)
 I (..\source\ti\devices\msp\m0p\mspm0g350x.h)(0x69680E6F)
@@ -251,7 +250,7 @@ I (..\source\ti\devices\msp\peripherals\m0p\sysctl\hw_sysctl_mspm0g1x0x_g3x0x.h)
 I (..\lib\lab2\uart.h)(0x69798FD3)
 I (..\lib\sysctl.h)(0x69680E6E)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x5ED6ECE4)
-F (.\camera.c)(0x699750F2)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-3 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../lib -I ../source-I./RTE/_Target_1-IC:/Users/samp/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-D__UVISION_VERSION="531" -D_RTE_ -D_RTE_ -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/camera.o -MD)
+F (.\camera.c)(0x6997951F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-3 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../lib -I ../source-I./RTE/_Target_1-IC:/Users/samp/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-D__UVISION_VERSION="531" -D_RTE_ -D_RTE_ -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/camera.o -MD)
 I (..\source\ti\devices\msp\msp.h)(0x69680E6F)
 I (..\source\ti\devices\DeviceFamily.h)(0x69680E6F)
 I (..\source\ti\devices\msp\m0p\mspm0g350x.h)(0x69680E6F)
@@ -291,6 +290,8 @@ I (..\source\ti\devices\msp\peripherals\m0p\hw_debugss.h)(0x69680E71)
 I (..\source\ti\devices\msp\peripherals\m0p\hw_sysctl.h)(0x69680E72)
 I (..\source\ti\devices\msp\peripherals\m0p\sysctl\hw_sysctl_mspm0g1x0x_g3x0x.h)(0x69680E72)
 I (..\lib\lab5\camera.h)(0x698CE2E0)
+I (..\lib\lab5\adc12.h)(0x698CE2E0)
+I (..\lib\lab5\timers.h)(0x698CE2E0)
 F (..\lib\lab5\adc12.h)(0x698CE2E0)()
 F (..\lib\lab5\camera.h)(0x698CE2E0)()
 F (..\lib\lab5\plot_cameras_serial.m)(0x698CE2E0)()

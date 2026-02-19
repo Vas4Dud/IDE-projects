@@ -21,26 +21,9 @@ int main(){
 	ADC0_init();
 	S1_init_interrupt();
 	S2_init_interrupt();
-	TIMG6_init(12500,199);//80Mhz Busclk/(8*200) = 50kHz. 25000/50kHz = 0.5Hz for each interrupt
-	TIMG12_init(5000);//80Mhz/(8) = 10Mhz. 10000/10Mhz = 1kHz for each interrupt
+	TIMG6_init(12500,199);//80Mhz Busclk/(8*200) = 50kHz.
+	TIMG12_init(5000);//80Mhz/(8) = 10Mhz.
 	while(1);
-}
-
-void TIMG6_IRQHandler(void){
-	uint32_t read_val = ADC0_getVal();
-	double degree_cel = (read_val-500)/10.0;
-	double degree_far = (degree_cel * (9.0 / 5.0)) + 32.0;
-	UART0_put("Celcius: ");
-	UART0_printFloat(degree_cel);
-	UART0_put(" Farenheit: ");
-	UART0_printFloat(degree_far);
-	UART0_put("\r\n");
-}
-
-void TIMG12_IRQHandler(void){
-	if(sw2_state == 1){
-		ms_counter++;
-	}
 }
 
 //GPIO interrupt handler

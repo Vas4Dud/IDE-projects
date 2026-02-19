@@ -3,7 +3,7 @@
 #include "lab5/adc12.h"
 #include "lab5/timers.h"
 static uint8_t cameraData_complete = 0;//0 = not ready, 1 = ready
-static uint32_t cameraData[128];
+static uint16_t cameraData[128];
 static unsigned pixel_counter = 0;
 
 /**
