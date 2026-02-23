@@ -77,8 +77,7 @@ void TIMG6_IRQHandler(void){
 	}
 	//check if there is no data to process
 	if (cameraData_complete == 1){
-		return;
-	}
+		cameraData_complete = 0;
 	//set SI high on clk falling edge
 	GPIOA->DOUTSET31_0 |= GPIO_DOUTSET31_0_DIO28_SET;
 	//set clk high with SI high for 1 rising edge
@@ -87,7 +86,7 @@ void TIMG6_IRQHandler(void){
 	GPIOA->DOUTCLR31_0 |= GPIO_DOUTCLR31_0_DIO28_CLR;
 	//Set clk falling edge
 	GPIOA->DOUTCLR31_0 |= GPIO_DOUTCLR31_0_DIO12_CLR;
-	
+	}
 	//enable clk timer
 	TIMG0->COUNTERREGS.CTRCTL |= GPTIMER_CTRCTL_EN_ENABLED;
 }

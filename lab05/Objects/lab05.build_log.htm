@@ -28,20 +28,22 @@ Project File Date:  02/19/2026
 *** Using Compiler 'V6.14', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Target 1'
 assembling startup_mspm0g350x_uvision.s...
-compiling timers.c...
-main.c(40): warning: no previous prototype for function 'TIMG12_IRQHandler' [-Wmissing-prototypes]
+main.c(39): warning: no previous prototype for function 'TIMG12_IRQHandler' [-Wmissing-prototypes]
 void TIMG12_IRQHandler(void){
      ^
-main.c(40): note: declare 'static' if the function is not intended to be used outside of this translation unit
+main.c(39): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void TIMG12_IRQHandler(void){
 ^
 static 
 1 warning generated.
 compiling main.c...
+compiling timers.c...
 compiling adc12.c...
 compiling leds.c...
 compiling switches.c...
 compiling uart.c...
+compiling sysctl.c...
+compiling uart_extras.c...
 camera.c(72): warning: no previous prototype for function 'TIMG6_IRQHandler' [-Wmissing-prototypes]
 void TIMG6_IRQHandler(void){
      ^
@@ -49,19 +51,17 @@ camera.c(72): note: declare 'static' if the function is not intended to be used 
 void TIMG6_IRQHandler(void){
 ^
 static 
-camera.c(96): warning: no previous prototype for function 'TIMG0_IRQHandler' [-Wmissing-prototypes]
+camera.c(95): warning: no previous prototype for function 'TIMG0_IRQHandler' [-Wmissing-prototypes]
 void TIMG0_IRQHandler(void){
      ^
-camera.c(96): note: declare 'static' if the function is not intended to be used outside of this translation unit
+camera.c(95): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void TIMG0_IRQHandler(void){
 ^
 static 
 2 warnings generated.
 compiling camera.c...
-compiling sysctl.c...
-compiling uart_extras.c...
 linking...
-Program Size: Code=4248 RO-data=224 RW-data=4 ZI-data=1396  
+Program Size: Code=4240 RO-data=224 RW-data=4 ZI-data=1396  
 ".\Objects\lab05.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>

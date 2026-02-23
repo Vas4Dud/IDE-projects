@@ -50,7 +50,7 @@ end % plot_cameras_serial
 %*****************************************************************************************************************
 function trace = readData(trace)
     % Initialize Serial Object
-    serialPort = "COM9";
+    serialPort = "COM4";
     serialBaudrate = 9600;
     camera = serialport(serialPort, serialBaudrate);
     camera.FlowControl = "software";

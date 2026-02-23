@@ -31,7 +31,6 @@ int main(){
 				UART0_put("\r\n");
 			}
 			UART0_put("-2\r\n");
-			mark_data_processed();
 		}
 	}
 }
