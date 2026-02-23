@@ -19,6 +19,19 @@ void Camera_init(void){
 	}
 	//configure GPIOA 28 and 12
 	
+	//configure GPIOA PA28 
+	IOMUX->SECCFG.PINCM[IOMUX_PINCM3]|= (0x80 | 0x01 );
+	GPIOA->DOESET31_0 |= GPIO_DOESET31_0_DIO28_SET; 
+	
+	//turn off
+	GPIOA->DOUTCLR31_0 |= GPIO_DOUTCLR31_0_DIO28_CLR;   
+		
+	//configure GPIOA PA12
+	IOMUX->SECCFG.PINCM[IOMUX_PINCM34]|= (0x80 | 0x01 );
+	GPIOA->DOESET31_0 |= GPIO_DOESET31_0_DIO12_SET; 
+	
+	//turn off
+	GPIOA->DOUTCLR31_0 |= GPIO_DOUTCLR31_0_DIO12_CLR;  
 	//ADC Init
 	ADC0_init();
 	//TIMG0 init at 100kHz. 40Mhz, clk div 8, prescale 50 = (40*10^6)/8*50 = 100kHz clk 
