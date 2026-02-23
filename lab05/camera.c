@@ -75,9 +75,9 @@ void TIMG6_IRQHandler(void){
 	//Toggle SI and CLK
 	
 	//set SI high on clk falling edge
-	GPIOA->DOESET31_0 |= GPIO_DOESET31_0_DIO28_SET;
+	GPIOA->DOUTSET31_0 |= GPIO_DOUTSET31_0_DIO28_SET;
 	//set clk high with SI high for 1 rising edge
-	GPIOA->DOESET31_0 |= GPIO_DOESET31_0_DIO12_SET;
+	GPIOA->DOUTSET31_0 |= GPIO_DOUTSET31_0_DIO12_SET;
 	//Set SI off
 	GPIOA->DOUTCLR31_0 |= GPIO_DOUTCLR31_0_DIO28_CLR;
 	//Set clk falling edge
@@ -90,7 +90,7 @@ void TIMG6_IRQHandler(void){
 
 void TIMG0_IRQHandler(void){
 	//pulse clk pin
-	GPIOA->DOESET31_0 |= GPIO_DOESET31_0_DIO12_SET;
+	GPIOA->DOUTSET31_0 |= GPIO_DOUTSET31_0_DIO12_SET;
 	GPIOA->DOUTCLR31_0 |= GPIO_DOUTCLR31_0_DIO12_CLR;
 	
 	//read ADC0
