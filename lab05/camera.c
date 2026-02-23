@@ -38,6 +38,8 @@ void Camera_init(void){
 	ADC0_init();
 	//TIMG0 init at 100kHz. 40Mhz, clk div 8, prescale 50 = (40*10^6)/8*50 = 100kHz clk 
 	TIMG0_init(1,49);
+	//Disable TIMG0
+	TIMG0->COUNTERREGS.CTRCTL &= ~(GPTIMER_CTRCTL_EN_ENABLED);
 	//TIMG6 init at integration time
 	TIMG6_init(2500*integration_time_mult,0);//80Mhz Busclk/(8) = 10MHz.
 }
