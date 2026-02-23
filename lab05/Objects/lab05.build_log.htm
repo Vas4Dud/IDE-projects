@@ -35,10 +35,10 @@ int32_t ms_counter = 0;
 main.c(13): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 int32_t ms_counter = 0;
 ^
-main.c(28): warning: no previous prototype for function 'TIMG12_IRQHandler' [-Wmissing-prototypes]
+main.c(39): warning: no previous prototype for function 'TIMG12_IRQHandler' [-Wmissing-prototypes]
 void TIMG12_IRQHandler(void){
      ^
-main.c(28): note: declare 'static' if the function is not intended to be used outside of this translation unit
+main.c(39): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void TIMG12_IRQHandler(void){
 ^
 static 
@@ -68,10 +68,10 @@ camera.c(66): note: declare 'static' if the function is not intended to be used 
 void TIMG6_IRQHandler(void){
 ^
 static 
-camera.c(84): warning: no previous prototype for function 'TIMG0_IRQHandler' [-Wmissing-prototypes]
+camera.c(92): warning: no previous prototype for function 'TIMG0_IRQHandler' [-Wmissing-prototypes]
 void TIMG0_IRQHandler(void){
      ^
-camera.c(84): note: declare 'static' if the function is not intended to be used outside of this translation unit
+camera.c(92): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void TIMG0_IRQHandler(void){
 ^
 static 
@@ -80,7 +80,7 @@ compiling camera.c...
 compiling sysctl.c...
 compiling uart_extras.c...
 linking...
-Program Size: Code=4208 RO-data=224 RW-data=4 ZI-data=1396  
+Program Size: Code=4320 RO-data=224 RW-data=4 ZI-data=1396  
 ".\Objects\lab05.axf" - 0 Error(s), 8 Warning(s).
 
 <h2>Software Packages used:</h2>

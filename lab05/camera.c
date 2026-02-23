@@ -5,7 +5,6 @@
 static uint8_t cameraData_complete = 0;//0 = not ready, 1 = ready
 static uint16_t cameraData[128];
 static unsigned pixel_counter = 0;
-extern int32_t ms_counter;
 //timer phase defines as 0.5ms then scaled by this macro scale factor(15 = 7.5ms)
 #define integration_time_mult 15
 
@@ -58,7 +57,7 @@ uint8_t Camera_isDataReady(void){
  * @brief Retrieves pointer to camera data array
  * @return Pointer to global data array stored locally in this file
 */
-uint16_t* Camera_getData(void){
+uint16_t* Camera_getData(){
 	return cameraData;
 }
 
