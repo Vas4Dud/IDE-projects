@@ -29,28 +29,20 @@ Project File Date:  02/19/2026
 Rebuild target 'Target 1'
 assembling startup_mspm0g350x_uvision.s...
 compiling timers.c...
-main.c(29): warning: no previous prototype for function 'TIMG6_IRQHandler' [-Wmissing-prototypes]
-void TIMG6_IRQHandler(void){
-     ^
-main.c(29): note: declare 'static' if the function is not intended to be used outside of this translation unit
-void TIMG6_IRQHandler(void){
+main.c(13): warning: no previous extern declaration for non-static variable 'ms_counter' [-Wmissing-variable-declarations]
+int32_t ms_counter = 0;
+        ^
+main.c(13): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int32_t ms_counter = 0;
 ^
-static 
-main.c(40): warning: no previous prototype for function 'TIMG12_IRQHandler' [-Wmissing-prototypes]
+main.c(28): warning: no previous prototype for function 'TIMG12_IRQHandler' [-Wmissing-prototypes]
 void TIMG12_IRQHandler(void){
      ^
-main.c(40): note: declare 'static' if the function is not intended to be used outside of this translation unit
+main.c(28): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void TIMG12_IRQHandler(void){
 ^
 static 
-main.c(47): warning: no previous prototype for function 'GROUP1_IRQHandler' [-Wmissing-prototypes]
-void GROUP1_IRQHandler(void){
-     ^
-main.c(47): note: declare 'static' if the function is not intended to be used outside of this translation unit
-void GROUP1_IRQHandler(void){
-^
-static 
-3 warnings generated.
+2 warnings generated.
 compiling main.c...
 compiling adc12.c...
 compiling leds.c...
@@ -69,15 +61,26 @@ compiling switches.c...
                        ^~~~~~~~~~~~~~~~~~~~~~~~~ ~
 4 warnings generated.
 compiling uart.c...
-camera.c(7): warning: unused variable 'pixel_counter' [-Wunused-variable]
-static unsigned pixel_counter = 0;
-                ^
-1 warning generated.
+camera.c(66): warning: no previous prototype for function 'TIMG6_IRQHandler' [-Wmissing-prototypes]
+void TIMG6_IRQHandler(void){
+     ^
+camera.c(66): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void TIMG6_IRQHandler(void){
+^
+static 
+camera.c(84): warning: no previous prototype for function 'TIMG0_IRQHandler' [-Wmissing-prototypes]
+void TIMG0_IRQHandler(void){
+     ^
+camera.c(84): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void TIMG0_IRQHandler(void){
+^
+static 
+2 warnings generated.
 compiling camera.c...
 compiling sysctl.c...
 compiling uart_extras.c...
 linking...
-Program Size: Code=5452 RO-data=268 RW-data=4 ZI-data=1132  
+Program Size: Code=4208 RO-data=224 RW-data=4 ZI-data=1396  
 ".\Objects\lab05.axf" - 0 Error(s), 8 Warning(s).
 
 <h2>Software Packages used:</h2>

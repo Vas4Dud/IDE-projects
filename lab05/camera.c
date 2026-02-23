@@ -5,6 +5,10 @@
 static uint8_t cameraData_complete = 0;//0 = not ready, 1 = ready
 static uint16_t cameraData[128];
 static unsigned pixel_counter = 0;
+extern int32_t ms_counter;
+//timer phase defines as 0.5ms then scaled by this macro scale factor(15 = 7.5ms)
+#define integration_time_mult 15
+
 
 /**
  * @brief Initialize camera associated components
@@ -17,16 +21,15 @@ void Camera_init(void){
 		//enable peripheral
 		GPIOA->GPRCM.PWREN |= (GPIO_PWREN_KEY_UNLOCK_W | GPIO_PWREN_ENABLE_ENABLE);
 	}
-	//configure GPIOA 28 and 12
 	
-	//configure GPIOA PA28 
+	//configure GPIOA PA28 SI 
 	IOMUX->SECCFG.PINCM[IOMUX_PINCM3]|= (0x80 | 0x01 );
 	GPIOA->DOESET31_0 |= GPIO_DOESET31_0_DIO28_SET; 
 	
 	//turn off
 	GPIOA->DOUTCLR31_0 |= GPIO_DOUTCLR31_0_DIO28_CLR;   
 		
-	//configure GPIOA PA12
+	//configure GPIOA PA12 CLK
 	IOMUX->SECCFG.PINCM[IOMUX_PINCM34]|= (0x80 | 0x01 );
 	GPIOA->DOESET31_0 |= GPIO_DOESET31_0_DIO12_SET; 
 	
@@ -37,7 +40,7 @@ void Camera_init(void){
 	//TIMG0 init at 100kHz. 40Mhz, clk div 8, prescale 50 = (40*10^6)/8*50 = 100kHz clk 
 	TIMG0_init(1,49);
 	//TIMG6 init at integration time
-	
+	TIMG6_init(2500*integration_time_mult,0);//80Mhz Busclk/(8) = 10MHz.
 }
 
 
@@ -59,8 +62,9 @@ uint16_t* Camera_getData(void){
 	return cameraData;
 }
 
-
+//ISR DEF FOR CAMERA MODULE
 void TIMG6_IRQHandler(void){
+	print_and_reset_ms_count("RESET TIME: ");
 	//ensure clk timer disabled
 	if(TIMG0->COUNTERREGS.CTRCTL & GPTIMER_CTRCTL_EN_ENABLED){
 		TIMG0->COUNTERREGS.CTRCTL &= ~(GPTIMER_CTRCTL_EN_ENABLED);//disable timer
@@ -71,6 +75,14 @@ void TIMG6_IRQHandler(void){
 	}
 	//Toggle SI and CLK
 	
+	//set SI high on clk falling edge
+	GPIOA->DOESET31_0 |= GPIO_DOESET31_0_DIO28_SET;
+	//set clk high with SI high for 1 rising edge
+	GPIOA->DOESET31_0 |= GPIO_DOESET31_0_DIO12_SET;
+	//Set SI off
+	GPIOA->DOUTCLR31_0 |= GPIO_DOUTCLR31_0_DIO28_CLR;
+	//Set clk falling edge
+	GPIOA->DOUTCLR31_0 |= GPIO_DOUTCLR31_0_DIO12_CLR;
 	
 	//enable clk timer
 	TIMG0->COUNTERREGS.CTRCTL |= GPTIMER_CTRCTL_EN_ENABLED;
@@ -78,12 +90,15 @@ void TIMG6_IRQHandler(void){
 
 
 void TIMG0_IRQHandler(void){
+	print_and_reset_ms_count("CLK TIME: ");
 	//pulse clk pin
+	GPIOA->DOESET31_0 |= GPIO_DOESET31_0_DIO12_SET;
+	GPIOA->DOUTCLR31_0 |= GPIO_DOUTCLR31_0_DIO12_CLR;
 	
 	//read ADC0
 	uint32_t read_val = ADC0_getVal();
 	//Populate cameraData and incriment index
-	cameraData[pixel_counter] = read_val;
+	cameraData[pixel_counter] = (uint16_t)read_val;
 	pixel_counter++;
 	//If data is full
 	if (pixel_counter >= 128){
@@ -96,3 +111,4 @@ void TIMG0_IRQHandler(void){
 		cameraData_complete = 0;
 	}
 }
+
