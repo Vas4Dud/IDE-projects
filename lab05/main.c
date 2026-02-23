@@ -21,7 +21,6 @@ int main(){
 	S2_init_interrupt();
 	Camera_init();
 	TIMG12_init(5000);//80Mhz/(8) = 10Mhz.
-	while(1);
 	while(1){
 		if(Camera_isDataReady()){
 			UART0_put("-1\r\n");
@@ -32,6 +31,7 @@ int main(){
 				UART0_put("\r\n");
 			}
 			UART0_put("-2\r\n");
+			mark_data_processed();
 		}
 	}
 }

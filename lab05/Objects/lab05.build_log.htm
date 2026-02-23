@@ -28,14 +28,7 @@ Project File Date:  02/19/2026
 *** Using Compiler 'V6.14', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Target 1'
 assembling startup_mspm0g350x_uvision.s...
-main.c(3): warning: In file included from...
-../lib\lab5/camera.h(39): warning: this function declaration is not a prototype [-Wstrict-prototypes]
-void print_and_reset_ms_count();
-                             ^
-                              void
-main.c(25): warning: code will never be executed [-Wunreachable-code]
-        while(1){
-              ^
+compiling timers.c...
 main.c(40): warning: no previous prototype for function 'TIMG12_IRQHandler' [-Wmissing-prototypes]
 void TIMG12_IRQHandler(void){
      ^
@@ -43,59 +36,33 @@ main.c(40): note: declare 'static' if the function is not intended to be used ou
 void TIMG12_IRQHandler(void){
 ^
 static 
-main.c(44): warning: no previous prototype for function 'print_and_reset_ms_count' [-Wmissing-prototypes]
-void print_and_reset_ms_count(){
-     ^
-../lib\lab5/camera.h(39): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
-void print_and_reset_ms_count();
-     ^
-                              void
-4 warnings generated.
+1 warning generated.
 compiling main.c...
-compiling timers.c...
 compiling adc12.c...
 compiling leds.c...
 compiling switches.c...
-../lib/lab2/uart.c(54): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        UART0->IBRD = ((int)int_part & UART_IBRD_DIVINT_MASK);                                            //integer part
-                       ^~~~~~~~~~~~~ ~
-../lib/lab2/uart.c(55): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        UART0->FBRD = ((int)((frac_part*64)+0.5) & UART_FBRD_DIVFRAC_MASK); //fractional part is multiplied by 64 to get in the 6 digit range, 
-                       ^~~~~~~~~~~~~~~~~~~~~~~~~ ~
-../lib/lab2/uart.c(121): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        UART1->IBRD = ((int)int_part & UART_IBRD_DIVINT_MASK);                                            //integer part
-                       ^~~~~~~~~~~~~ ~
-../lib/lab2/uart.c(122): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        UART1->FBRD = ((int)((frac_part*64)+0.5) & UART_FBRD_DIVFRAC_MASK); //fractional part is multiplied by 64 to get in the 6 digit range, 
-                       ^~~~~~~~~~~~~~~~~~~~~~~~~ ~
-4 warnings generated.
 compiling uart.c...
-camera.c(2): warning: In file included from...
-../lib\lab5/camera.h(39): warning: this function declaration is not a prototype [-Wstrict-prototypes]
-void print_and_reset_ms_count();
-                             ^
-                              void
-camera.c(65): warning: no previous prototype for function 'TIMG6_IRQHandler' [-Wmissing-prototypes]
+camera.c(72): warning: no previous prototype for function 'TIMG6_IRQHandler' [-Wmissing-prototypes]
 void TIMG6_IRQHandler(void){
      ^
-camera.c(65): note: declare 'static' if the function is not intended to be used outside of this translation unit
+camera.c(72): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void TIMG6_IRQHandler(void){
 ^
 static 
-camera.c(91): warning: no previous prototype for function 'TIMG0_IRQHandler' [-Wmissing-prototypes]
+camera.c(96): warning: no previous prototype for function 'TIMG0_IRQHandler' [-Wmissing-prototypes]
 void TIMG0_IRQHandler(void){
      ^
-camera.c(91): note: declare 'static' if the function is not intended to be used outside of this translation unit
+camera.c(96): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void TIMG0_IRQHandler(void){
 ^
 static 
-3 warnings generated.
+2 warnings generated.
 compiling camera.c...
 compiling sysctl.c...
 compiling uart_extras.c...
 linking...
-Program Size: Code=4056 RO-data=224 RW-data=4 ZI-data=1396  
-".\Objects\lab05.axf" - 0 Error(s), 11 Warning(s).
+Program Size: Code=4248 RO-data=224 RW-data=4 ZI-data=1396  
+".\Objects\lab05.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 

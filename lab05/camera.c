@@ -63,9 +63,14 @@ uint16_t* Camera_getData(){
 	return cameraData;
 }
 
+void mark_data_processed(void){
+	cameraData_complete = 0;
+	return;
+}
+
 //ISR DEF FOR CAMERA MODULE
 void TIMG6_IRQHandler(void){
-	//print_and_reset_ms_count();
+	//print_and_reset_ms_count(); //UNCOMMENT TO VERIFY TIMG6 TIME
 	//ensure clk timer disabled
 	if(TIMG0->COUNTERREGS.CTRCTL & GPTIMER_CTRCTL_EN_ENABLED){
 		TIMG0->COUNTERREGS.CTRCTL &= ~(GPTIMER_CTRCTL_EN_ENABLED);//disable timer
@@ -74,8 +79,6 @@ void TIMG6_IRQHandler(void){
 	if (cameraData_complete == 1){
 		return;
 	}
-	//Toggle SI and CLK
-	
 	//set SI high on clk falling edge
 	GPIOA->DOUTSET31_0 |= GPIO_DOUTSET31_0_DIO28_SET;
 	//set clk high with SI high for 1 rising edge
@@ -107,8 +110,6 @@ void TIMG0_IRQHandler(void){
 		TIMG0->COUNTERREGS.CTRCTL &= ~(GPTIMER_CTRCTL_EN_ENABLED);
 		//reset index
 		pixel_counter = 0;
-	}else{
-		cameraData_complete = 0;
 	}
 }
 
