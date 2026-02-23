@@ -64,7 +64,7 @@ uint16_t* Camera_getData(void){
 
 //ISR DEF FOR CAMERA MODULE
 void TIMG6_IRQHandler(void){
-	print_and_reset_ms_count("RESET TIME: ");
+	//print_and_reset_ms_count("RESET TIME: ");
 	//ensure clk timer disabled
 	if(TIMG0->COUNTERREGS.CTRCTL & GPTIMER_CTRCTL_EN_ENABLED){
 		TIMG0->COUNTERREGS.CTRCTL &= ~(GPTIMER_CTRCTL_EN_ENABLED);//disable timer

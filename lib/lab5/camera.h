@@ -36,5 +36,6 @@ uint8_t Camera_isDataReady(void);
 */
 uint16_t* Camera_getData(void);
 
+void print_and_reset_ms_count(char* debug_name);
 
 #endif // _CAMERA_H_
