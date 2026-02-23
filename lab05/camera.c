@@ -63,7 +63,7 @@ uint16_t* Camera_getData(){
 
 //ISR DEF FOR CAMERA MODULE
 void TIMG6_IRQHandler(void){
-	//print_and_reset_ms_count("RESET TIME: ");
+	//print_and_reset_ms_count();
 	//ensure clk timer disabled
 	if(TIMG0->COUNTERREGS.CTRCTL & GPTIMER_CTRCTL_EN_ENABLED){
 		TIMG0->COUNTERREGS.CTRCTL &= ~(GPTIMER_CTRCTL_EN_ENABLED);//disable timer
@@ -89,7 +89,6 @@ void TIMG6_IRQHandler(void){
 
 
 void TIMG0_IRQHandler(void){
-	print_and_reset_ms_count("CLK TIME: ");
 	//pulse clk pin
 	GPIOA->DOESET31_0 |= GPIO_DOESET31_0_DIO12_SET;
 	GPIOA->DOUTCLR31_0 |= GPIO_DOUTCLR31_0_DIO12_CLR;

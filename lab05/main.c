@@ -21,6 +21,7 @@ int main(){
 	S2_init_interrupt();
 	Camera_init();
 	TIMG12_init(5000);//80Mhz/(8) = 10Mhz.
+	while(1);
 	while(1){
 		if(Camera_isDataReady()){
 			UART0_put("-1\r\n");
@@ -40,8 +41,7 @@ void TIMG12_IRQHandler(void){
 		ms_counter++;
 }
 
-void print_and_reset_ms_count(char* debug_name){
-	UART0_put(debug_name);
+void print_and_reset_ms_count(){
 	UART0_printDec(ms_counter);
 	UART0_put("\n\r");
 	ms_counter = 0;

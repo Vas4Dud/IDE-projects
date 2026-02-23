@@ -28,22 +28,31 @@ Project File Date:  02/19/2026
 *** Using Compiler 'V6.14', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Target 1'
 assembling startup_mspm0g350x_uvision.s...
-compiling timers.c...
-main.c(13): warning: no previous extern declaration for non-static variable 'ms_counter' [-Wmissing-variable-declarations]
-int32_t ms_counter = 0;
-        ^
-main.c(13): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-int32_t ms_counter = 0;
-^
-main.c(39): warning: no previous prototype for function 'TIMG12_IRQHandler' [-Wmissing-prototypes]
+main.c(3): warning: In file included from...
+../lib\lab5/camera.h(39): warning: this function declaration is not a prototype [-Wstrict-prototypes]
+void print_and_reset_ms_count();
+                             ^
+                              void
+main.c(25): warning: code will never be executed [-Wunreachable-code]
+        while(1){
+              ^
+main.c(40): warning: no previous prototype for function 'TIMG12_IRQHandler' [-Wmissing-prototypes]
 void TIMG12_IRQHandler(void){
      ^
-main.c(39): note: declare 'static' if the function is not intended to be used outside of this translation unit
+main.c(40): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void TIMG12_IRQHandler(void){
 ^
 static 
-2 warnings generated.
+main.c(44): warning: no previous prototype for function 'print_and_reset_ms_count' [-Wmissing-prototypes]
+void print_and_reset_ms_count(){
+     ^
+../lib\lab5/camera.h(39): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+void print_and_reset_ms_count();
+     ^
+                              void
+4 warnings generated.
 compiling main.c...
+compiling timers.c...
 compiling adc12.c...
 compiling leds.c...
 compiling switches.c...
@@ -61,27 +70,32 @@ compiling switches.c...
                        ^~~~~~~~~~~~~~~~~~~~~~~~~ ~
 4 warnings generated.
 compiling uart.c...
-camera.c(66): warning: no previous prototype for function 'TIMG6_IRQHandler' [-Wmissing-prototypes]
+camera.c(2): warning: In file included from...
+../lib\lab5/camera.h(39): warning: this function declaration is not a prototype [-Wstrict-prototypes]
+void print_and_reset_ms_count();
+                             ^
+                              void
+camera.c(65): warning: no previous prototype for function 'TIMG6_IRQHandler' [-Wmissing-prototypes]
 void TIMG6_IRQHandler(void){
      ^
-camera.c(66): note: declare 'static' if the function is not intended to be used outside of this translation unit
+camera.c(65): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void TIMG6_IRQHandler(void){
 ^
 static 
-camera.c(92): warning: no previous prototype for function 'TIMG0_IRQHandler' [-Wmissing-prototypes]
+camera.c(91): warning: no previous prototype for function 'TIMG0_IRQHandler' [-Wmissing-prototypes]
 void TIMG0_IRQHandler(void){
      ^
-camera.c(92): note: declare 'static' if the function is not intended to be used outside of this translation unit
+camera.c(91): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void TIMG0_IRQHandler(void){
 ^
 static 
-2 warnings generated.
+3 warnings generated.
 compiling camera.c...
 compiling sysctl.c...
 compiling uart_extras.c...
 linking...
-Program Size: Code=4320 RO-data=224 RW-data=4 ZI-data=1396  
-".\Objects\lab05.axf" - 0 Error(s), 8 Warning(s).
+Program Size: Code=4056 RO-data=224 RW-data=4 ZI-data=1396  
+".\Objects\lab05.axf" - 0 Error(s), 11 Warning(s).
 
 <h2>Software Packages used:</h2>
 
