@@ -46,6 +46,7 @@ uint16_t* Camera_getData(void){
 	return cameraData;
 }
 
+
 void TIMG6_IRQHandler(void){
 	//ensure clk timer disabled
 	if(TIMG0->COUNTERREGS.CTRCTL & GPTIMER_CTRCTL_EN_ENABLED){
@@ -78,5 +79,7 @@ void TIMG0_IRQHandler(void){
 		TIMG0->COUNTERREGS.CTRCTL &= ~(GPTIMER_CTRCTL_EN_ENABLED);
 		//reset index
 		pixel_counter = 0;
+	}else{
+		cameraData_complete = 0;
 	}
 }

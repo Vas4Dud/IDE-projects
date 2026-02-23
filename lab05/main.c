@@ -1,6 +1,6 @@
 #include <ti/devices/msp/msp.h>
 #include "lab5/switches.h"
-//#include "lab5/camera.h"
+#include "lab5/camera.h"
 #include "lab5/adc12.h"
 #include "lab5/timers.h"
 #include "lab1/leds.h"
@@ -21,10 +21,15 @@ int main(){
 	ADC0_init();
 	S1_init_interrupt();
 	S2_init_interrupt();
-	TIMG6_init(12500,199);//80Mhz Busclk/(8*200) = 50kHz.
+	Camera_init();
 	TIMG12_init(5000);//80Mhz/(8) = 10Mhz.
 	while(1);
 }
+
+void TIMG12_IRQHandler(void){
+		ms_counter++;
+}
+
 
 //GPIO interrupt handler
 void GROUP1_IRQHandler(void){
