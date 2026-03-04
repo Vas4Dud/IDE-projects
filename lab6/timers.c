@@ -222,7 +222,7 @@ void TIMA0_PWM_init(uint8_t pin, uint32_t period, uint32_t prescaler, double per
 	{
 		IOMUX->SECCFG.PINCM[IOMUX_PINCM29]|= (0x80 | IOMUX_PINCM29_PF_TIMA0_CCP1 );  
 		//set value to configure duty cycle
-		TIMA0->COUNTERREGS.CC_01[1] |= (period * (1 - (uint32_t) percentDutyCycle));
+		TIMA0->COUNTERREGS.CC_01[1] |= (uint32_t)(period * (1 - percentDutyCycle));
 		//set COC for compare mode
 		TIMA0->COUNTERREGS.CCCTL_01[1] = 0;
 		//Configure CCP as an output for the CC block by setting respective bit in the CCPD registers. For instance, if
@@ -265,6 +265,8 @@ void TIMA0_PWM_init(uint8_t pin, uint32_t period, uint32_t prescaler, double per
     //set CCPO = 0 to select the signal generator output.
 		TIMA0->COUNTERREGS.OCTL_23[1] |= GPTIMER_OCTL_23_CCPO_FUNCVAL;
 	}
+	
+	TIMG12->COUNTERREGS.CTRCTL |= GPTIMER_CTRCTL_EN_ENABLED;
 }
 
 

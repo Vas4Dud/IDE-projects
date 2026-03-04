@@ -90,3 +90,10 @@ void spin_stepper(int forward_true){
 	}
 	delay(10);
 }
+
+
+int main(){
+	init_dc_motor(10,100,0.5);//80Mhz/(8*100) = 100kHz
+	while(1);
+	return 0;
+}
