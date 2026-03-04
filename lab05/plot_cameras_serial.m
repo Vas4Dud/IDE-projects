@@ -25,22 +25,21 @@ ax1 = nexttile;
 ax2 = nexttile;
 ax3 = nexttile;
 
-try
+%try
     while (true)
         trace = readData(trace);
         smoothtrace = smoothData(trace);  % Smoothed data
         bintrace = edgeData(smoothtrace); % Edge detection
-
         if ~isvalid(plt), break;   end
         if isvalid(ax1), cla(ax1); end
         if isvalid(ax2), cla(ax2); end
         if isvalid(ax3), cla(ax3); end
-
+        
         plotdata(trace, smoothtrace, bintrace, plt, ax1, ax2, ax3);
     end
-catch
-    close(plt.Parent);
-end
+%catch
+    %close(plt.Parent);
+%end
 
 disp('Exiting...');
 
@@ -88,12 +87,22 @@ end
 function data = smoothData(data)
     % TODO: 5-point Averager
     %   For loop or movmean()
+    for i = 1:128
+        data = movmean(data, 5); % Apply a 5-point moving average
+
+    end;
 
 end
 
 function data = edgeData(data)
     for i = 1:128
         % TODO: Edge detection (binary 0 or 1)
+        threshold = mean(data); % Define a threshold for edge detection
+        if (data > threshold)
+            data(i) = 1;
+        else 
+            data(i) = 0; % Convert to binary based on threshold
+        end
 
     end
 end
@@ -101,7 +110,21 @@ end
 function plotdata(trace, smoothtrace, bintrace, plt, ax1, ax2, ax3)
     % TODO: Plot data
     %   plot(ax, trace)
+    %subplot(3, 1, 1);
+    plot(ax1, trace);
+    xlim(ax1,[0 128]);
 
-    refreshdata
+    %subplot(3, 1, 2);
+    plot(ax2, smoothtrace);
+    xlim(ax2,[0 128]);
+    %subplot(3, 1, 3);
+    plot(ax3, bintrace);
+    xlim(ax3,[0 128]);
+    xlabel(ax3, 'Sample Number');
+    ylabel(ax3, 'Edge Detection');
+    title(ax3, 'Binary Edge Data');
+
+    
+    refreshdata;
     drawnow
 end

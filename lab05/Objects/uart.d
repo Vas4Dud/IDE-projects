@@ -1,4 +1,4 @@
-./objects/main.o: main.c ..\source\ti\devices\msp\msp.h \
+./objects/uart.o: ..\lib\lab2\uart.c ..\source\ti\devices\msp\msp.h \
   ..\source\ti\devices\DeviceFamily.h \
   ..\source\ti\devices\msp\m0p\mspm0g350x.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
@@ -36,7 +36,5 @@
   ..\source\ti\devices\msp\peripherals\m0p\hw_debugss.h \
   ..\source\ti\devices\msp\peripherals\m0p\hw_sysctl.h \
   ..\source\ti\devices\msp\peripherals\m0p\sysctl\hw_sysctl_mspm0g1x0x_g3x0x.h \
-  ..\lib\lab5\switches.h ..\lib\lab5\camera.h ..\lib\lab5\adc12.h \
-  ..\lib\lab5\timers.h ..\lib\lab1\leds.h ..\lib\lab2\uart.h \
-  ..\lib\uart_extras.h C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h
+  ..\lib\lab2\uart.h ..\lib\sysctl.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h

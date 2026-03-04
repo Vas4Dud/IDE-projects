@@ -51,8 +51,8 @@ void UART0_init(void){
 	double BRD = (SYSCTL_SYSCLK_getULPCLK())/(16*UART0_baud_rate);
 	double int_part, frac_part;
 	frac_part = modf(BRD, &int_part);
-	UART0->IBRD = ((int)int_part & UART_IBRD_DIVINT_MASK);						  //integer part
-	UART0->FBRD = ((int)((frac_part*64)+0.5) & UART_FBRD_DIVFRAC_MASK); //fractional part is multiplied by 64 to get in the 6 digit range, 
+	UART0->IBRD = ((unsigned int)int_part & UART_IBRD_DIVINT_MASK);						  //integer part
+	UART0->FBRD = ((unsigned int)((frac_part*64)+0.5) & UART_FBRD_DIVFRAC_MASK); //fractional part is multiplied by 64 to get in the 6 digit range, 
 																																			//and 0.5 is added to minimize rounding error (TRM pg 1351)
 	
 	UART0->LCRH |= UART_LCRH_PEN_DISABLE;    //set 0 parity
@@ -118,8 +118,8 @@ void UART1_init(void){
 	double BRD = (SYSCTL_SYSCLK_getULPCLK())/(16*UART1_baud_rate);
 	double int_part, frac_part;
 	frac_part = modf(BRD, &int_part);
-	UART1->IBRD = ((int)int_part & UART_IBRD_DIVINT_MASK);						  //integer part
-	UART1->FBRD = ((int)((frac_part*64)+0.5) & UART_FBRD_DIVFRAC_MASK); //fractional part is multiplied by 64 to get in the 6 digit range, 
+	UART1->IBRD = ((unsigned int)int_part & UART_IBRD_DIVINT_MASK);						  //integer part
+	UART1->FBRD = ((unsigned int)((frac_part*64)+0.5) & UART_FBRD_DIVFRAC_MASK); //fractional part is multiplied by 64 to get in the 6 digit range, 
 																																			//and 0.5 is added to minimize rounding error (TRM pg 1351)
 	
 	UART1->LCRH |= UART_LCRH_PEN_DISABLE;    //set 0 parity

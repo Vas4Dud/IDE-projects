@@ -22,17 +22,47 @@ Dialog DLL:      TARMCM1.DLL V1.14.2.0
  
 <h2>Project:</h2>
 C:\Users\samp\Downloads\IDE-projects\lab05\lab05.uvprojx
-Project File Date:  02/11/2026
+Project File Date:  02/19/2026
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.14', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Target 1'
 assembling startup_mspm0g350x_uvision.s...
-compiling switches.c...
+main.c(39): warning: no previous prototype for function 'TIMG12_IRQHandler' [-Wmissing-prototypes]
+void TIMG12_IRQHandler(void){
+     ^
+main.c(39): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void TIMG12_IRQHandler(void){
+^
+static 
+1 warning generated.
 compiling main.c...
+compiling timers.c...
+compiling adc12.c...
+compiling leds.c...
+compiling switches.c...
+compiling uart.c...
+compiling sysctl.c...
+compiling uart_extras.c...
+camera.c(72): warning: no previous prototype for function 'TIMG6_IRQHandler' [-Wmissing-prototypes]
+void TIMG6_IRQHandler(void){
+     ^
+camera.c(72): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void TIMG6_IRQHandler(void){
+^
+static 
+camera.c(95): warning: no previous prototype for function 'TIMG0_IRQHandler' [-Wmissing-prototypes]
+void TIMG0_IRQHandler(void){
+     ^
+camera.c(95): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void TIMG0_IRQHandler(void){
+^
+static 
+2 warnings generated.
+compiling camera.c...
 linking...
-Program Size: Code=304 RO-data=208 RW-data=0 ZI-data=1120  
-".\Objects\lab05.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=4240 RO-data=224 RW-data=4 ZI-data=1396  
+".\Objects\lab05.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -54,7 +84,7 @@ Package Vendor: TexasInstruments
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.4.0
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

@@ -1,5 +1,6 @@
-./objects/switches.o: ..\switches.c ..\source\ti\devices\msp\msp.h \
-  ..\source\ti\devices\DeviceFamily.h \
+./objects/switches.o: switches.c \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
+  ..\source\ti\devices\msp\msp.h ..\source\ti\devices\DeviceFamily.h \
   ..\source\ti\devices\msp\m0p\mspm0g350x.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
@@ -36,4 +37,4 @@
   ..\source\ti\devices\msp\peripherals\m0p\hw_debugss.h \
   ..\source\ti\devices\msp\peripherals\m0p\hw_sysctl.h \
   ..\source\ti\devices\msp\peripherals\m0p\sysctl\hw_sysctl_mspm0g1x0x_g3x0x.h \
-  ..\lib\lab1\switches.h
+  ..\lib\lab5\switches.h
