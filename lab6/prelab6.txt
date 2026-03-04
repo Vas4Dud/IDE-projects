@@ -1,0 +1,10 @@
+1a) 4.5/30  = 0.15 kg/cm
+1b) 2 Ams
+1c) 9000 RPM
+1d) 3.0 = 1/4(Tmax * (300rev/min * 2pi* 1min/60sec)) Tmax = 0.381972Nm Tmax = 54.091793251 oz-in
+1e) kRPM = 0.3
+
+2a) They act as clamp diodes to protect transistors from voltage spikes.
+2b) The capacitor is there to prevent spikes caused by CEMF, protecting the transistor since CEMF causes direct connection from V to GND. 
+2c) The transistors are in pairs in order to create an H bridge where clockwise or counter-clockwise motor rotation can be selected. 
+2d) The 2N3904/2N3906 need the base to have a lower current from the IO pins of the microcontroller. Their emitter provides a higher current into the base of the TIP31/TIP42. This make it possible to scale the output for the +V and GND voltages of the H-Bridge.
