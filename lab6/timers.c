@@ -204,7 +204,7 @@ void TIMA0_PWM_init(uint8_t pin, uint32_t period, uint32_t prescaler, double per
 	{
 		IOMUX->SECCFG.PINCM[IOMUX_PINCM25]|= (0x80 | IOMUX_PINCM25_PF_TIMA0_CCP0 );
 		//set value to configure duty cycle
-		TIMA0->COUNTERREGS.CC_01[0] = (period * (1 - (uint32_t) percentDutyCycle));
+		TIMA0->COUNTERREGS.CC_01[0] = (uint32_t)(period * (1 - percentDutyCycle));
 		//set COC for compare mode
 		TIMA0->COUNTERREGS.CCCTL_01[0] |= (0 & GPTIMER_CCCTL_01_COC_MASK);
 		//Configure CCP as an output for the CC block by setting respective bit in the CCPD registers. For instance, if
@@ -256,7 +256,7 @@ void TIMA0_PWM_init(uint8_t pin, uint32_t period, uint32_t prescaler, double per
 	{
 		IOMUX->SECCFG.PINCM[IOMUX_PINCM30]|= (0x80 | IOMUX_PINCM30_PF_TIMA0_CCP3 );
 		//set value to configure duty cycle
-		TIMA0->COUNTERREGS.CC_23[1] |= (period * (1 - (uint32_t) percentDutyCycle));
+		TIMA0->COUNTERREGS.CC_23[1] |=  (uint32_t)(period * (1 - percentDutyCycle));
 		//set COC for compare mode
 		TIMA0->COUNTERREGS.CCCTL_23[1] = 0;
 		//Configure CCP as an output for the CC block by setting respective bit in the CCPD registers. For instance, if
@@ -267,6 +267,7 @@ void TIMA0_PWM_init(uint8_t pin, uint32_t period, uint32_t prescaler, double per
     //set CCPO = 0 to select the signal generator output.
 		TIMA0->COUNTERREGS.OCTL_23[1] |= GPTIMER_OCTL_23_CCPO_FUNCVAL;
 	}
+	TIMA0->COUNTERREGS.CTRCTL |= GPTIMER_CTRCTL_EN_ENABLED;
 }
 
 
@@ -322,7 +323,7 @@ void TIMA1_PWM_init(uint8_t pin, uint32_t period, uint32_t prescaler, double per
 	{
 		IOMUX->SECCFG.PINCM[IOMUX_PINCM17]|= (0x80 | IOMUX_PINCM25_PF_TIMA0_CCP0 );
 		//set value to configure duty cycle
-		TIMA1->COUNTERREGS.CC_01[0] |= (period * (1 - (uint32_t) percentDutyCycle));
+		TIMA1->COUNTERREGS.CC_01[0] |= (uint32_t)(period * (1 - percentDutyCycle));
 		//set COC for compare mode
 		TIMA1->COUNTERREGS.CCCTL_01[0] = 0;
 		//Configure CCP as an output for the CC block by setting respective bit in the CCPD registers. For instance, if
@@ -334,7 +335,7 @@ void TIMA1_PWM_init(uint8_t pin, uint32_t period, uint32_t prescaler, double per
 		TIMA1->COUNTERREGS.OCTL_01[0] |= GPTIMER_OCTL_01_CCPO_FUNCVAL;
 
 	}
-
+	TIMA1->COUNTERREGS.CTRCTL |= GPTIMER_CTRCTL_EN_ENABLED;
 }
 
 
@@ -347,7 +348,7 @@ void TIMA0_PWM_DutyCycle(uint8_t pin, double percentDutyCycle)
 {
 	 if (pin == 0)
 	 {
-		 TIMA0->COUNTERREGS.CC_01[0] = (1 - (uint32_t) percentDutyCycle);
+		 TIMA0->COUNTERREGS.CC_01[0] = (uint32_t)(1 - percentDutyCycle);
 	 }
 	 if (pin == 1)
 	 {
@@ -372,7 +373,7 @@ void TIMA1_PWM_DutyCycle(uint8_t pin, double percentDutyCycle)
 {
 	 if (pin == 0)
 	 {
-		 TIMA1->COUNTERREGS.CC_01[0] = (1 - (uint32_t) percentDutyCycle);
+		 TIMA1->COUNTERREGS.CC_01[0] = (uint32_t)(1 - percentDutyCycle);
 	 }
 }
 

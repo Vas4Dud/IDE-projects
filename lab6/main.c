@@ -5,6 +5,16 @@
 #include <stdio.h>
 #include <stdint.h>
 
+void delay(int time);
+
+void delay(int time){
+	
+	unsigned long time_to_clk_cycles = time;
+	
+	for (volatile unsigned long i=time_to_clk_cycles; i>0; i--);
+}
+
+
 void init_stepper_motor(){
 	if(!(GPIOB->GPRCM.PWREN & 1U)){
 		//reset peripheral
@@ -91,9 +101,10 @@ void spin_stepper(int forward_true){
 	delay(10);
 }
 
-
 int main(){
-	init_dc_motor(10,100,0.5);//80Mhz/(8*100) = 100kHz
-	while(1);
+	init_dc_motor(20,49,0.20);//80Mhz/(8*50) = 200kHz
+	//dc_forward(0.20);
+	//dc_forward(0.50);
+	TIMA0_PWM_DutyCycle(0, 0.50);
 	return 0;
 }
