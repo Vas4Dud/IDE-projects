@@ -182,7 +182,7 @@ void TIMA0_PWM_init(uint8_t pin, uint32_t period, uint32_t prescaler, double per
 	//uses MCLK as BUSCLK = 80MHz
 	TIMA0->CLKSEL |= GPTIMER_CLKSEL_BUSCLK_SEL_ENABLE;
 	//set CLKDIV to 8
-	TIMA0->CLKDIV |= GPTIMER_CLKDIV_RATIO_DIV_BY_8;
+	TIMA0->CLKDIV |= GPTIMER_CLKDIV_RATIO_DIV_BY_1;
 	//set prescaler
 	TIMA0->COMMONREGS.CPS |= (prescaler & GPTIMER_CPS_PCNT_MASK);
 	//Enable TIMCLK
@@ -204,7 +204,7 @@ void TIMA0_PWM_init(uint8_t pin, uint32_t period, uint32_t prescaler, double per
 	{
 		IOMUX->SECCFG.PINCM[IOMUX_PINCM25]|= (0x80 | IOMUX_PINCM25_PF_TIMA0_CCP0 );
 		//set value to configure duty cycle
-		TIMA0->COUNTERREGS.CC_01[0] = (uint32_t)(period * (1 - percentDutyCycle));
+		TIMA0->COUNTERREGS.CC_01[0] = (uint32_t)((double)period * (double)(1.0 - percentDutyCycle));
 		//set COC for compare mode
 		TIMA0->COUNTERREGS.CCCTL_01[0] |= (0 & GPTIMER_CCCTL_01_COC_MASK);
 		//Configure CCP as an output for the CC block by setting respective bit in the CCPD registers. For instance, if

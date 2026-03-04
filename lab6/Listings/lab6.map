@@ -9,7 +9,6 @@ Section Cross References
     main.o(.text.spin_stepper) refers to main.o(.text.init_stepper_motor) for init_stepper_motor
     main.o(.ARM.exidx.text.spin_stepper) refers to main.o(.text.spin_stepper) for [Anonymous Symbol]
     main.o(.text.main) refers to dc_motor.o(.text.init_dc_motor) for init_dc_motor
-    main.o(.text.main) refers to timers.o(.text.TIMA0_PWM_DutyCycle) for TIMA0_PWM_DutyCycle
     main.o(.ARM.exidx.text.main) refers to main.o(.text.main) for [Anonymous Symbol]
     dc_motor.o(.text.init_dc_motor) refers to timers.o(.text.TIMA0_PWM_init) for TIMA0_PWM_init
     dc_motor.o(.text.init_dc_motor) refers to timers.o(.text.TIMA1_PWM_init) for TIMA1_PWM_init
@@ -193,11 +192,12 @@ Removing Unused input sections from the image.
     Removing timers.o(.ARM.exidx.text.TIMG12_init), (8 bytes).
     Removing timers.o(.ARM.exidx.text.TIMA0_PWM_init), (8 bytes).
     Removing timers.o(.ARM.exidx.text.TIMA1_PWM_init), (8 bytes).
+    Removing timers.o(.text.TIMA0_PWM_DutyCycle), (100 bytes).
     Removing timers.o(.ARM.exidx.text.TIMA0_PWM_DutyCycle), (8 bytes).
     Removing timers.o(.text.TIMA1_PWM_DutyCycle), (36 bytes).
     Removing timers.o(.ARM.exidx.text.TIMA1_PWM_DutyCycle), (8 bytes).
 
-29 unused section(s) (total 912 bytes) removed from the image.
+30 unused section(s) (total 1012 bytes) removed from the image.
 
 ==============================================================================
 
@@ -326,30 +326,27 @@ Image Symbol Table
     .text                                    0x0000081c   Section        0  sys_exit.o(.text)
     .text                                    0x00000828   Section        2  use_no_semi.o(.text)
     .text                                    0x0000082a   Section        0  indicate_semi.o(.text)
-    [Anonymous Symbol]                       0x0000082c   Section        0  timers.o(.text.TIMA0_PWM_DutyCycle)
-    __arm_cp.6_0                             0x00000888   Number         4  timers.o(.text.TIMA0_PWM_DutyCycle)
-    [Anonymous Symbol]                       0x0000088c   Section        0  timers.o(.text.TIMA0_PWM_init)
-    __arm_cp.4_0                             0x000009f4   Number         4  timers.o(.text.TIMA0_PWM_init)
-    __arm_cp.4_3                             0x000009f8   Number         4  timers.o(.text.TIMA0_PWM_init)
-    __arm_cp.4_4                             0x000009fc   Number         4  timers.o(.text.TIMA0_PWM_init)
-    __arm_cp.4_5                             0x00000a00   Number         4  timers.o(.text.TIMA0_PWM_init)
-    __arm_cp.4_6                             0x00000a04   Number         4  timers.o(.text.TIMA0_PWM_init)
-    [Anonymous Symbol]                       0x00000a08   Section        0  timers.o(.text.TIMA1_PWM_init)
-    __arm_cp.5_0                             0x00000abc   Number         4  timers.o(.text.TIMA1_PWM_init)
-    __arm_cp.5_1                             0x00000ac0   Number         4  timers.o(.text.TIMA1_PWM_init)
-    __arm_cp.5_2                             0x00000ac4   Number         4  timers.o(.text.TIMA1_PWM_init)
-    __arm_cp.5_3                             0x00000ac8   Number         4  timers.o(.text.TIMA1_PWM_init)
-    __arm_cp.5_4                             0x00000acc   Number         4  timers.o(.text.TIMA1_PWM_init)
-    __arm_cp.5_5                             0x00000ad0   Number         4  timers.o(.text.TIMA1_PWM_init)
-    __arm_cp.5_6                             0x00000ad4   Number         4  timers.o(.text.TIMA1_PWM_init)
-    __arm_cp.5_7                             0x00000ad8   Number         4  timers.o(.text.TIMA1_PWM_init)
-    __arm_cp.5_8                             0x00000adc   Number         4  timers.o(.text.TIMA1_PWM_init)
-    [Anonymous Symbol]                       0x00000ae0   Section        0  dc_motor.o(.text.init_dc_motor)
-    [Anonymous Symbol]                       0x00000b0c   Section        0  main.o(.text.main)
-    __arm_cp.3_0                             0x00000b2c   Number         4  main.o(.text.main)
-    __arm_cp.3_1                             0x00000b30   Number         4  main.o(.text.main)
-    __arm_cp.3_2                             0x00000b34   Number         4  main.o(.text.main)
-    x$fpl$usenofp                            0x00000b38   Section        0  usenofp.o(x$fpl$usenofp)
+    [Anonymous Symbol]                       0x0000082c   Section        0  timers.o(.text.TIMA0_PWM_init)
+    __arm_cp.4_0                             0x00000990   Number         4  timers.o(.text.TIMA0_PWM_init)
+    __arm_cp.4_3                             0x00000994   Number         4  timers.o(.text.TIMA0_PWM_init)
+    __arm_cp.4_4                             0x00000998   Number         4  timers.o(.text.TIMA0_PWM_init)
+    __arm_cp.4_5                             0x0000099c   Number         4  timers.o(.text.TIMA0_PWM_init)
+    __arm_cp.4_6                             0x000009a0   Number         4  timers.o(.text.TIMA0_PWM_init)
+    [Anonymous Symbol]                       0x000009a4   Section        0  timers.o(.text.TIMA1_PWM_init)
+    __arm_cp.5_0                             0x00000a58   Number         4  timers.o(.text.TIMA1_PWM_init)
+    __arm_cp.5_1                             0x00000a5c   Number         4  timers.o(.text.TIMA1_PWM_init)
+    __arm_cp.5_2                             0x00000a60   Number         4  timers.o(.text.TIMA1_PWM_init)
+    __arm_cp.5_3                             0x00000a64   Number         4  timers.o(.text.TIMA1_PWM_init)
+    __arm_cp.5_4                             0x00000a68   Number         4  timers.o(.text.TIMA1_PWM_init)
+    __arm_cp.5_5                             0x00000a6c   Number         4  timers.o(.text.TIMA1_PWM_init)
+    __arm_cp.5_6                             0x00000a70   Number         4  timers.o(.text.TIMA1_PWM_init)
+    __arm_cp.5_7                             0x00000a74   Number         4  timers.o(.text.TIMA1_PWM_init)
+    __arm_cp.5_8                             0x00000a78   Number         4  timers.o(.text.TIMA1_PWM_init)
+    [Anonymous Symbol]                       0x00000a7c   Section        0  dc_motor.o(.text.init_dc_motor)
+    [Anonymous Symbol]                       0x00000aa8   Section        0  main.o(.text.main)
+    __arm_cp.3_0                             0x00000ac0   Number         4  main.o(.text.main)
+    __arm_cp.3_1                             0x00000ac4   Number         4  main.o(.text.main)
+    x$fpl$usenofp                            0x00000ac8   Section        0  usenofp.o(x$fpl$usenofp)
     .bss                                     0x20200000   Section       96  libspace.o(.bss)
     Heap_Mem                                 0x20200060   Data         512  startup_mspm0g350x_uvision.o(HEAP)
     HEAP                                     0x20200060   Section      512  startup_mspm0g350x_uvision.o(HEAP)
@@ -499,14 +496,13 @@ Image Symbol Table
     __I$use$semihosting                      0x00000829   Thumb Code     0  use_no_semi.o(.text)
     __use_no_semihosting_swi                 0x00000829   Thumb Code     2  use_no_semi.o(.text)
     __semihosting_library_function           0x0000082b   Thumb Code     0  indicate_semi.o(.text)
-    TIMA0_PWM_DutyCycle                      0x0000082d   Thumb Code    96  timers.o(.text.TIMA0_PWM_DutyCycle)
-    TIMA0_PWM_init                           0x0000088d   Thumb Code   380  timers.o(.text.TIMA0_PWM_init)
-    TIMA1_PWM_init                           0x00000a09   Thumb Code   216  timers.o(.text.TIMA1_PWM_init)
-    init_dc_motor                            0x00000ae1   Thumb Code    42  dc_motor.o(.text.init_dc_motor)
-    main                                     0x00000b0d   Thumb Code    44  main.o(.text.main)
-    Region$$Table$$Base                      0x00000b38   Number         0  anon$$obj.o(Region$$Table)
-    __I$use$fp                               0x00000b38   Number         0  usenofp.o(x$fpl$usenofp)
-    Region$$Table$$Limit                     0x00000b48   Number         0  anon$$obj.o(Region$$Table)
+    TIMA0_PWM_init                           0x0000082d   Thumb Code   376  timers.o(.text.TIMA0_PWM_init)
+    TIMA1_PWM_init                           0x000009a5   Thumb Code   216  timers.o(.text.TIMA1_PWM_init)
+    init_dc_motor                            0x00000a7d   Thumb Code    42  dc_motor.o(.text.init_dc_motor)
+    main                                     0x00000aa9   Thumb Code    32  main.o(.text.main)
+    Region$$Table$$Base                      0x00000ac8   Number         0  anon$$obj.o(Region$$Table)
+    __I$use$fp                               0x00000ac8   Number         0  usenofp.o(x$fpl$usenofp)
+    Region$$Table$$Limit                     0x00000ad8   Number         0  anon$$obj.o(Region$$Table)
     __libspace_start                         0x20200000   Data          96  libspace.o(.bss)
     __temporary_stack_top$libspace           0x20200060   Data           0  libspace.o(.bss)
 
@@ -518,9 +514,9 @@ Memory Map of the image
 
   Image Entry point : 0x000000c1
 
-  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00000b48, Max: 0x00020000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00000ad8, Max: 0x00020000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000b48, Max: 0x00020000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000ad8, Max: 0x00020000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -586,17 +582,16 @@ Memory Map of the image
     0x00000828   0x00000828   0x00000002   Code   RO          184    .text               c_p.l(use_no_semi.o)
     0x0000082a   0x0000082a   0x00000000   Code   RO          186    .text               c_p.l(indicate_semi.o)
     0x0000082a   0x0000082a   0x00000002   PAD
-    0x0000082c   0x0000082c   0x00000060   Code   RO           54    .text.TIMA0_PWM_DutyCycle  timers.o
-    0x0000088c   0x0000088c   0x0000017c   Code   RO           50    .text.TIMA0_PWM_init  timers.o
-    0x00000a08   0x00000a08   0x000000d8   Code   RO           52    .text.TIMA1_PWM_init  timers.o
-    0x00000ae0   0x00000ae0   0x0000002a   Code   RO           19    .text.init_dc_motor  dc_motor.o
-    0x00000b0a   0x00000b0a   0x00000002   PAD
-    0x00000b0c   0x00000b0c   0x0000002c   Code   RO            8    .text.main          main.o
-    0x00000b38   0x00000b38   0x00000000   Code   RO           80    x$fpl$usenofp       fz_ps.l(usenofp.o)
-    0x00000b38   0x00000b38   0x00000010   Data   RO          242    Region$$Table       anon$$obj.o
+    0x0000082c   0x0000082c   0x00000178   Code   RO           50    .text.TIMA0_PWM_init  timers.o
+    0x000009a4   0x000009a4   0x000000d8   Code   RO           52    .text.TIMA1_PWM_init  timers.o
+    0x00000a7c   0x00000a7c   0x0000002a   Code   RO           19    .text.init_dc_motor  dc_motor.o
+    0x00000aa6   0x00000aa6   0x00000002   PAD
+    0x00000aa8   0x00000aa8   0x00000020   Code   RO            8    .text.main          main.o
+    0x00000ac8   0x00000ac8   0x00000000   Code   RO           80    x$fpl$usenofp       fz_ps.l(usenofp.o)
+    0x00000ac8   0x00000ac8   0x00000010   Data   RO          242    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM2 (Exec base: 0x20200000, Load base: 0x00000b48, Size: 0x00000460, Max: 0x00008000, ABSOLUTE)
+    Execution Region RW_IRAM2 (Exec base: 0x20200000, Load base: 0x00000ad8, Size: 0x00000460, Max: 0x00008000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -629,12 +624,12 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
         42          0          0          0          0       1006   dc_motor.o
-        44         12          0          0          0       5540   main.o
+        32          8          0          0          0       5539   main.o
         48         22        192          0       1024        772   startup_mspm0g350x_uvision.o
-       692         68          0          0          0      10408   timers.o
+       592         60          0          0          0      10408   timers.o
 
     ----------------------------------------------------------------------
-       828        102        208          0       1024      17726   Object Totals
+       716         90        208          0       1024      17725   Object Totals
          0          0         16          0          0          0   (incl. Generated)
          2          0          0          0          0          0   (incl. Padding)
 
@@ -688,15 +683,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      2680        172        208          0       1120      18358   Grand Totals
-      2680        172        208          0       1120      18358   ELF Image Totals
-      2680        172        208          0          0          0   ROM Totals
+      2568        160        208          0       1120      18357   Grand Totals
+      2568        160        208          0       1120      18357   ELF Image Totals
+      2568        160        208          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 2888 (   2.82kB)
+    Total RO  Size (Code + RO Data)                 2776 (   2.71kB)
     Total RW  Size (RW Data + ZI Data)              1120 (   1.09kB)
-    Total ROM Size (Code + RO Data + RW Data)       2888 (   2.82kB)
+    Total ROM Size (Code + RO Data + RW Data)       2776 (   2.71kB)
 
 ==============================================================================
 

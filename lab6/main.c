@@ -102,9 +102,6 @@ void spin_stepper(int forward_true){
 }
 
 int main(){
-	init_dc_motor(20,49,0.20);//80Mhz/(8*50) = 200kHz
-	//dc_forward(0.20);
-	//dc_forward(0.50);
-	TIMA0_PWM_DutyCycle(0, 0.50);
+	init_dc_motor(4000,0,0.20);//80Mhz
 	return 0;
 }
