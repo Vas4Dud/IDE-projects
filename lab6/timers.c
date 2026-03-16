@@ -11,7 +11,7 @@
 #include "lab6/timers.h"
 #include "arm_compat.h"
 #include "core_cm0plus.h"
-
+#include "sysctl.h"
 /**
  * @brief Timer G0 module initialization. General purpose timer
  * @note Timer G0 is in Power Domain 0. Check page 3 of the Data Sheet
@@ -177,10 +177,128 @@ void TIMA0_PWM_init(uint8_t pin, uint32_t period, uint32_t prescaler, double per
 		//enable peripheral
 		GPIOB->GPRCM.PWREN |= (GPIO_PWREN_KEY_UNLOCK_W | GPIO_PWREN_ENABLE_ENABLE);
 	}*/
-	
 	//TIMCLK CONFIGURATION
 	//uses MCLK as BUSCLK = 80MHz
 	TIMA0->CLKSEL |= GPTIMER_CLKSEL_BUSCLK_SEL_ENABLE;
+	//set CLKDIV to 8
+	TIMA0->CLKDIV |= GPTIMER_CLKDIV_RATIO_DIV_BY_1;
+	//set prescaler
+	TIMA0->COMMONREGS.CPS |= (prescaler & GPTIMER_CPS_PCNT_MASK);
+	//Enable TIMCLK
+	TIMA0->COMMONREGS.CCLKCTL |= GPTIMER_CCLKCTL_CLKEN_ENABLED;
+	
+	//COUNTING MODE CONTROL
+	//set down counting
+	TIMA0->COUNTERREGS.CTRCTL |= GPTIMER_CTRCTL_CM_DOWN;
+	//set perdiodic
+	TIMA0->COUNTERREGS.CTRCTL |= GPTIMER_CTRCTL_REPEAT_REPEAT_1;
+	//counter value after enable
+	TIMA0->COUNTERREGS.CTRCTL |= GPTIMER_CTRCTL_CVAE_LDVAL;
+	//Set LOAD to period
+	TIMA0->COUNTERREGS.LOAD = period;
+	
+	
+	//CONFIGURATION BASED OF CHANNEL
+	if (pin == 0)//configure GPIOB PB8 channel 0 
+	{
+		IOMUX->SECCFG.PINCM[IOMUX_PINCM25]|= (0x80 | IOMUX_PINCM25_PF_TIMA0_CCP0 );
+		//set value to configure duty cycle
+		TIMA0->COUNTERREGS.CC_01[0] = (uint32_t)((double)period * (double)(1.0 - percentDutyCycle));
+		//set COC for compare mode
+		TIMA0->COUNTERREGS.CCCTL_01[0] |= (0 & GPTIMER_CCCTL_01_COC_MASK);
+		//Configure CCP as an output for the CC block by setting respective bit in the CCPD registers. For instance, if
+		//TIMx Channel 0 is an output, set CCPD.C0CCP0 = 1
+		TIMA0->COMMONREGS.CCPD |= GPTIMER_CCPD_C0CCP0_OUTPUT;
+		//CCP output action settings”
+		TIMA0->COUNTERREGS.CCACT_01[0] |= (GPTIMER_CCACT_01_LACT_CCP_HIGH & GPTIMER_CCACT_01_LACT_MASK)
+											| (GPTIMER_CCACT_01_CDACT_CCP_LOW & GPTIMER_CCACT_01_CDACT_MASK); 
+    //set CCPO = 0 to select the signal generator output.
+		TIMA0->COUNTERREGS.OCTL_01[0] = ((GPTIMER_OCTL_01_CCPO_FUNCVAL & GPTIMER_OCTL_01_CCPOINV_MASK) |
+							(GPTIMER_IFCTL_01_INV_NOINVERT & GPTIMER_IFCTL_01_INV_MASK) 
+						| (GPTIMER_ODIS_C0CCP1_CCP_OUTPUT_LOW & GPTIMER_ODIS_C0CCP1_MASK )); //add non inverting and low and and with mask
+
+	}
+	
+	if (pin == 1)//configure GPIOB PB12 channel 1 
+	{
+		IOMUX->SECCFG.PINCM[IOMUX_PINCM29]|= (0x80 | IOMUX_PINCM29_PF_TIMA0_CCP1 );  
+		//set value to configure duty cycle
+		TIMA0->COUNTERREGS.CC_01[1] |= (period * (1 - (uint32_t) percentDutyCycle));
+		//set COC for compare mode
+		TIMA0->COUNTERREGS.CCCTL_01[1] = 0;
+		//Configure CCP as an output for the CC block by setting respective bit in the CCPD registers. For instance, if
+		//TIMx Channel 0 is an output, set CCPD.C0CCP0 = 1
+		TIMA0->COMMONREGS.CCPD = GPTIMER_CCPD_C0CCP1_OUTPUT ;
+		//CCP output action settings”
+		TIMA0->COUNTERREGS.CCACT_01[1] = (GPTIMER_CCACT_01_LACT_CCP_HIGH | GPTIMER_CCACT_01_CDACT_CCP_LOW); 
+    //set CCPO = 0 to select the signal generator output.
+		TIMA0->COUNTERREGS.OCTL_01[1] |= GPTIMER_OCTL_01_CCPO_FUNCVAL;
+	}
+		
+	if (pin == 2)//configure GPIOB PB17 channel 2 
+	{
+		IOMUX->SECCFG.PINCM[IOMUX_PINCM43]|= (0x80 | IOMUX_PINCM43_PF_TIMA0_CCP2 );
+		//set value to configure duty cycle
+		TIMA0->COUNTERREGS.CC_23[0] |= (period * (1 - (uint32_t) percentDutyCycle));
+		//set COC for compare mode
+		TIMA0->COUNTERREGS.CCCTL_23[0] = 0;
+		//Configure CCP as an output for the CC block by setting respective bit in the CCPD registers. For instance, if
+		//TIMx Channel 0 is an output, set CCPD.C0CCP0 = 1
+		TIMA0->COMMONREGS.CCPD = GPTIMER_CCPD_C0CCP2_OUTPUT;
+		//CCP output action settings”
+		TIMA0->COUNTERREGS.CCACT_23[0] = (GPTIMER_CCACT_23_LACT_CCP_HIGH | GPTIMER_CCACT_23_CDACT_CCP_LOW); 
+    //set CCPO = 0 to select the signal generator output.
+		TIMA0->COUNTERREGS.OCTL_23[0] |= GPTIMER_OCTL_23_CCPO_FUNCVAL;
+	}	
+	
+	if (pin == 3)//configure GPIOB PB13 channel 3 
+	{
+		IOMUX->SECCFG.PINCM[IOMUX_PINCM30]|= (0x80 | IOMUX_PINCM30_PF_TIMA0_CCP3 );
+		//set value to configure duty cycle
+		TIMA0->COUNTERREGS.CC_23[1] |=  (uint32_t)(period * (1 - percentDutyCycle));
+		//set COC for compare mode
+		TIMA0->COUNTERREGS.CCCTL_23[1] = 0;
+		//Configure CCP as an output for the CC block by setting respective bit in the CCPD registers. For instance, if
+		//TIMx Channel 0 is an output, set CCPD.C0CCP0 = 1
+		TIMA0->COMMONREGS.CCPD = GPTIMER_CCPD_C0CCP3_OUTPUT;
+		//CCP output action settings”
+		TIMA0->COUNTERREGS.CCACT_23[1] = (GPTIMER_CCACT_23_LACT_CCP_HIGH | GPTIMER_CCACT_23_CDACT_CCP_LOW); 
+    //set CCPO = 0 to select the signal generator output.
+		TIMA0->COUNTERREGS.OCTL_23[1] |= GPTIMER_OCTL_23_CCPO_FUNCVAL;
+	}
+	TIMA0->COUNTERREGS.CTRCTL |= GPTIMER_CTRCTL_EN_ENABLED;
+}
+
+
+
+void TIMA0_PWM_freq_init(uint8_t pin, uint32_t frequency, double percentDutyCycle){
+	
+		//enable peripheral if not enabled
+	if(!(TIMA0->GPRCM.PWREN & GPTIMER_PWREN_ENABLE_ENABLE)){
+			//assert reset
+			TIMA0->GPRCM.RSTCTL |= (GPTIMER_RSTCTL_KEY_UNLOCK_W | GPTIMER_RSTCTL_RESETASSERT_ASSERT);
+			//enable
+			TIMA0->GPRCM.PWREN |= (GPTIMER_PWREN_KEY_UNLOCK_W | GPTIMER_PWREN_ENABLE_ENABLE);
+	}
+	
+	/*//enable GPIO B Peripheral
+	if(!(GPIOB->GPRCM.PWREN & GPIO_PWREN_ENABLE_ENABLE)){
+		//reset peripheral
+		GPIOB->GPRCM.RSTCTL |= (GPIO_RSTCTL_KEY_UNLOCK_W | GPIO_RSTCTL_RESETASSERT_ASSERT);
+		//enable peripheral
+		GPIOB->GPRCM.PWREN |= (GPIO_PWREN_KEY_UNLOCK_W | GPIO_PWREN_ENABLE_ENABLE);
+	}*/
+	//TIMCLK CONFIGURATION
+	//uses MCLK as BUSCLK = 80MHz
+	TIMA0->CLKSEL |= GPTIMER_CLKSEL_BUSCLK_SEL_ENABLE;
+	
+	uint32_t sys_clk = SYSCTL_SYSCLK_getMCLK();//USE THIS TO DETERMINE FREQ
+	uint32_t period = sys_clk/frequency;
+	uint32_t prescaler = 0;
+	
+	
+	
+	
 	//set CLKDIV to 8
 	TIMA0->CLKDIV |= GPTIMER_CLKDIV_RATIO_DIV_BY_1;
 	//set prescaler

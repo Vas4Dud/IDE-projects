@@ -43,7 +43,7 @@ void TIMG12_init(uint32_t period);
  * @note Store period to be able to adjust duty cycle percentage later
 */
 void TIMA0_PWM_init(uint8_t pin, uint32_t period, uint32_t prescaler, double percentDutyCycle);
-
+void TIMA0_PWM_freq_init(uint8_t pin, uint32_t frequency, double percentDutyCycle);
 
 /**
  * @brief Timer A1 module PWM initialization

@@ -4,12 +4,13 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdint.h>
+#include "sysctl.h"
 
-void delay(int time);
+void delay(int time_ms);
 
-void delay(int time){
-	
-	unsigned long time_to_clk_cycles = time;
+void delay(int time_ms){
+	unsigned long cycles_per_ms = SYSCTL_SYSCLK_getMCLK()/1000;
+	unsigned long time_to_clk_cycles = (unsigned long)time_ms*cycles_per_ms;
 	
 	for (volatile unsigned long i=time_to_clk_cycles; i>0; i--);
 }
@@ -97,11 +98,12 @@ void spin_stepper(int forward_true){
 				phase = 0;
 			}
 		}
-	}
 	delay(10);
+	}
 }
 
+
 int main(){
-	init_dc_motor(4000,0,0.20);//80Mhz
+	init_dc_motor(10000,0.20);
 	return 0;
 }

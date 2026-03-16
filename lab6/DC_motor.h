@@ -5,7 +5,7 @@
 
 
 
-void init_dc_motor(uint32_t period, uint32_t prescaler, double percentDutyCycle);
+void init_dc_motor(uint32_t frequency, double percentDutyCycle);
 
 void dc_forward(double percentDutyCycle);
 

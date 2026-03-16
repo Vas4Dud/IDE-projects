@@ -5,11 +5,11 @@
 #include <stdio.h>
 #include <stdint.h>
 
-void init_dc_motor(uint32_t period, uint32_t prescaler, double percentDutyCycle){
+void init_dc_motor(uint32_t frequency, double percentDutyCycle){
 	//forward driver pin
-	TIMA0_PWM_init(0, period, prescaler, percentDutyCycle);
+	TIMA0_PWM_freq_init(0, frequency, percentDutyCycle);
 	//reverse driver pin, starts with zero
-	TIMA1_PWM_init(1, period, prescaler, 0.0);
+	//TIMA1_PWM_init(1, period, prescaler, 0.0);
 }
 
 
