@@ -22,42 +22,37 @@ Dialog DLL:      TARMCM1.DLL V1.14.2.0
  
 <h2>Project:</h2>
 C:\Users\samp\Downloads\IDE-projects\lab6\lab6.uvprojx
-Project File Date:  03/04/2026
+Project File Date:  03/16/2026
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.14', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Target 1'
 assembling startup_mspm0g350x_uvision.s...
-main.c(12): warning: implicit conversion changes signedness: 'int' to 'unsigned long' [-Wsign-conversion]
-        unsigned long time_to_clk_cycles = time;
-                      ~~~~~~~~~~~~~~~~~~   ^~~~
-main.c(18): warning: no previous prototype for function 'init_stepper_motor' [-Wmissing-prototypes]
+compiling DC_motor.c...
+main.c(19): warning: no previous prototype for function 'init_stepper_motor' [-Wmissing-prototypes]
 void init_stepper_motor(){
      ^
-main.c(18): note: declare 'static' if the function is not intended to be used outside of this translation unit
+main.c(19): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void init_stepper_motor(){
 ^
 static 
-main.c(47): warning: no previous prototype for function 'spin_stepper' [-Wmissing-prototypes]
+main.c(48): warning: no previous prototype for function 'spin_stepper' [-Wmissing-prototypes]
 void spin_stepper(int forward_true){
      ^
-main.c(47): note: declare 'static' if the function is not intended to be used outside of this translation unit
+main.c(48): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void spin_stepper(int forward_true){
 ^
 static 
-main.c(47): warning: function 'spin_stepper' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+main.c(48): warning: function 'spin_stepper' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
 void spin_stepper(int forward_true){
                                    ^
-main.c(101): warning: code will never be executed [-Wunreachable-code]
-        delay(10);
-        ^~~~~
-5 warnings generated.
+3 warnings generated.
 compiling main.c...
-compiling DC_motor.c...
+compiling sysctl.c...
 compiling timers.c...
 linking...
-Program Size: Code=2568 RO-data=208 RW-data=0 ZI-data=1120  
-".\Objects\lab6.axf" - 0 Error(s), 5 Warning(s).
+Program Size: Code=3024 RO-data=224 RW-data=4 ZI-data=1124  
+".\Objects\lab6.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 

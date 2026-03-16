@@ -299,7 +299,7 @@ void TIMA0_PWM_freq_init(uint8_t pin, uint32_t frequency, double percentDutyCycl
 	
 	
 	
-	//set CLKDIV to 8
+	//set CLKDIV to 1
 	TIMA0->CLKDIV |= GPTIMER_CLKDIV_RATIO_DIV_BY_1;
 	//set prescaler
 	TIMA0->COMMONREGS.CPS |= (prescaler & GPTIMER_CPS_PCNT_MASK);
@@ -322,19 +322,18 @@ void TIMA0_PWM_freq_init(uint8_t pin, uint32_t frequency, double percentDutyCycl
 	{
 		IOMUX->SECCFG.PINCM[IOMUX_PINCM25]|= (0x80 | IOMUX_PINCM25_PF_TIMA0_CCP0 );
 		//set value to configure duty cycle
-		TIMA0->COUNTERREGS.CC_01[0] = (uint32_t)((double)period * (double)(1.0 - percentDutyCycle));
+		TIMA0->COUNTERREGS.CC_01[0] = (uint16_t)((double)period * (double)(1.0 - percentDutyCycle));
 		//set COC for compare mode
-		TIMA0->COUNTERREGS.CCCTL_01[0] |= (0 & GPTIMER_CCCTL_01_COC_MASK);
+		TIMA0->COUNTERREGS.CCCTL_01[0] &= ~(GPTIMER_CCCTL_01_COC_MASK);
 		//Configure CCP as an output for the CC block by setting respective bit in the CCPD registers. For instance, if
 		//TIMx Channel 0 is an output, set CCPD.C0CCP0 = 1
 		TIMA0->COMMONREGS.CCPD |= GPTIMER_CCPD_C0CCP0_OUTPUT;
 		//CCP output action settings”
-		TIMA0->COUNTERREGS.CCACT_01[0] |= (GPTIMER_CCACT_01_LACT_CCP_HIGH & GPTIMER_CCACT_01_LACT_MASK)
-											| (GPTIMER_CCACT_01_CDACT_CCP_LOW & GPTIMER_CCACT_01_CDACT_MASK); 
+		TIMA0->COUNTERREGS.CCACT_01[0] |= (GPTIMER_CCACT_01_LACT_CCP_HIGH | GPTIMER_CCACT_01_CDACT_CCP_LOW); 
     //set CCPO = 0 to select the signal generator output.
-		TIMA0->COUNTERREGS.OCTL_01[0] = ((GPTIMER_OCTL_01_CCPO_FUNCVAL & GPTIMER_OCTL_01_CCPOINV_MASK) |
-							(GPTIMER_IFCTL_01_INV_NOINVERT & GPTIMER_IFCTL_01_INV_MASK) 
-						| (GPTIMER_ODIS_C0CCP1_CCP_OUTPUT_LOW & GPTIMER_ODIS_C0CCP1_MASK )); //add non inverting and low and and with mask
+		TIMA0->COUNTERREGS.OCTL_01[0] = (GPTIMER_OCTL_01_CCPO_FUNCVAL);
+		TIMA0->COUNTERREGS.IFCTL_01[0] = GPTIMER_IFCTL_01_INV_NOINVERT; 
+		TIMA0->COMMONREGS.ODIS =  GPTIMER_ODIS_C0CCP1_CCP_OUTPUT_LOW;
 
 	}
 	
