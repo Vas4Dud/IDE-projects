@@ -12,6 +12,10 @@
 #include "arm_compat.h"
 #include "core_cm0plus.h"
 #include "sysctl.h"
+
+
+static uint16_t global_period_tim0 = 0;
+static uint16_t global_period_tim1 = 0;
 /**
  * @brief Timer G0 module initialization. General purpose timer
  * @note Timer G0 is in Power Domain 0. Check page 3 of the Data Sheet
@@ -294,6 +298,7 @@ void TIMA0_PWM_freq_init(uint8_t pin, uint32_t frequency, double percentDutyCycl
 	
 	uint32_t sys_clk = SYSCTL_SYSCLK_getMCLK();//USE THIS TO DETERMINE FREQ
 	uint32_t period = sys_clk/frequency;
+	global_period_tim0 = (uint16_t)period;
 	uint32_t prescaler = 0;
 	
 	
@@ -465,7 +470,7 @@ void TIMA0_PWM_DutyCycle(uint8_t pin, double percentDutyCycle)
 {
 	 if (pin == 0)
 	 {
-		 TIMA0->COUNTERREGS.CC_01[0] = (uint32_t)(1 - percentDutyCycle);
+		 TIMA0->COUNTERREGS.CC_01[0] = (uint16_t)((double)global_period_tim0 * (double)(1.0 - percentDutyCycle));
 	 }
 	 if (pin == 1)
 	 {
