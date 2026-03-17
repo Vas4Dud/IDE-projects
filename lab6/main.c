@@ -65,7 +65,7 @@ void spin_stepper(int forward_true){
 				GPIOB->DOUTSET31_0 |= (1 << 7); //set B high
 				phase++;
 			}	
-			else if (phase==1){
+			else if (phase==2){
 				GPIOB->DOUTCLR31_0 |= (1 << 7); //set B low
 				GPIOB->DOUTSET31_0 |= (1 << 0); //set C high
 				phase++;
@@ -87,7 +87,7 @@ void spin_stepper(int forward_true){
 				GPIOB->DOUTSET31_0 |= (1 << 0); //set C high
 				phase++;
 			}	
-			else if (phase==1){
+			else if (phase==2){
 				GPIOB->DOUTCLR31_0 |= (1 << 0); //set C low
 				GPIOB->DOUTSET31_0 |= (1 << 7); //set B high
 				phase++;
@@ -103,7 +103,10 @@ void spin_stepper(int forward_true){
 }
 
 
-int main(){
+int main(){	
+	init_stepper_motor();
+	spin_stepper(true);
+	while(1);
 	init_dc_motor0(10000,0.20);
 	double duty_cycle_iter = 0.0;
 	while(1){

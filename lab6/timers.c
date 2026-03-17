@@ -299,10 +299,7 @@ void TIMA0_PWM_freq_init(uint8_t pin, uint32_t frequency, double percentDutyCycl
 	uint32_t period = sys_clk/frequency;
 	global_period_tim0 = (uint16_t)period;
 	uint32_t prescaler = 0;
-	
-	
-	
-	
+
 	//set CLKDIV to 1
 	TIMA0->CLKDIV |= GPTIMER_CLKDIV_RATIO_DIV_BY_1;
 	//set prescaler
@@ -407,7 +404,7 @@ void TIMA1_PWM_freq_init(uint8_t pin, uint32_t frequency, double percentDutyCycl
 	
 	//TIMCLK CONFIGURATION
 	//uses MCLK as BUSCLK = 80MHz
-	TIMA1->CLKSEL |= GPTIMER_CLKSEL_BUSCLK_SEL_ENABLE;
+	TIMA1->CLKSEL = GPTIMER_CLKSEL_BUSCLK_SEL_ENABLE;
 	uint32_t sys_clk = SYSCTL_SYSCLK_getMCLK();//USE THIS TO DETERMINE FREQ
 	uint32_t period = sys_clk/frequency;
 	global_period_tim1 = (uint16_t)period;
@@ -422,7 +419,7 @@ void TIMA1_PWM_freq_init(uint8_t pin, uint32_t frequency, double percentDutyCycl
 	
 	//COUNTING MODE CONTROL
 	//set down counting
-	TIMA1->COUNTERREGS.CTRCTL |= GPTIMER_CTRCTL_CM_DOWN;
+	TIMA1->COUNTERREGS.CTRCTL = GPTIMER_CTRCTL_CM_DOWN;
 	//set perdiodic
 	TIMA1->COUNTERREGS.CTRCTL |= GPTIMER_CTRCTL_REPEAT_REPEAT_1;
 	//counter value after enable
@@ -447,59 +444,6 @@ void TIMA1_PWM_freq_init(uint8_t pin, uint32_t frequency, double percentDutyCycl
     //set CCPO = 0 to select the signal generator output.
 		TIMA1->COUNTERREGS.OCTL_01[0] |= GPTIMER_OCTL_01_CCPO_FUNCVAL;
 		TIMA1->COUNTERREGS.IFCTL_01[0] = GPTIMER_IFCTL_01_INV_NOINVERT; 
-		TIMA1->COMMONREGS.ODIS =  GPTIMER_ODIS_C0CCP1_CCP_OUTPUT_LOW;
-	}
-	if (pin == 1)//configure GPIOB PB12 channel 1 
-	{
-		IOMUX->SECCFG.PINCM[IOMUX_PINCM29]|= (0x80 | IOMUX_PINCM29_PF_TIMA0_CCP1 );  
-		//set value to configure duty cycle
-		TIMA1->COUNTERREGS.CC_01[1] = (uint16_t)((double)period * (double)(1.0 - percentDutyCycle));
-		//set COC for compare mode
-		TIMA1->COUNTERREGS.CCCTL_01[1] &= ~(GPTIMER_CCCTL_01_COC_MASK);
-		//Configure CCP as an output for the CC block by setting respective bit in the CCPD registers. For instance, if
-		//TIMx Channel 0 is an output, set CCPD.C0CCP0 = 1
-		TIMA1->COMMONREGS.CCPD |= GPTIMER_CCPD_C0CCP1_OUTPUT ;
-		//CCP output action settings”
-		TIMA1->COUNTERREGS.CCACT_01[1] |= (GPTIMER_CCACT_01_LACT_CCP_HIGH | GPTIMER_CCACT_01_CDACT_CCP_LOW); 
-    //set CCPO = 0 to select the signal generator output.
-		TIMA1->COUNTERREGS.OCTL_01[1] = (GPTIMER_OCTL_01_CCPO_FUNCVAL);
-		TIMA1->COUNTERREGS.IFCTL_01[1] = GPTIMER_IFCTL_01_INV_NOINVERT; 
-		TIMA1->COMMONREGS.ODIS =  GPTIMER_ODIS_C0CCP0_CCP_OUTPUT_LOW;
-	}	
-	if (pin == 2)//configure GPIOB PB17 channel 2 
-	{
-		IOMUX->SECCFG.PINCM[IOMUX_PINCM43]|= (0x80 | IOMUX_PINCM43_PF_TIMA0_CCP2 );
-		//set value to configure duty cycle
-		TIMA1->COUNTERREGS.CC_23[0] = (uint16_t)((double)period * (double)(1.0 - percentDutyCycle));
-		//set COC for compare mode
-		TIMA1->COUNTERREGS.CCCTL_23[0] &= ~(GPTIMER_CCCTL_23_COC_MASK);
-		//Configure CCP as an output for the CC block by setting respective bit in the CCPD registers. For instance, if
-		//TIMx Channel 0 is an output, set CCPD.C0CCP0 = 1
-		TIMA1->COMMONREGS.CCPD |= GPTIMER_CCPD_C0CCP2_OUTPUT;
-		//CCP output action settings”
-		TIMA1->COUNTERREGS.CCACT_23[0] |= (GPTIMER_CCACT_23_LACT_CCP_HIGH | GPTIMER_CCACT_23_CDACT_CCP_LOW); 
-    //set CCPO = 0 to select the signal generator output.
-		TIMA1->COUNTERREGS.OCTL_23[0] = GPTIMER_OCTL_23_CCPO_FUNCVAL;
-		TIMA1->COUNTERREGS.IFCTL_23[0] = GPTIMER_IFCTL_23_INV_NOINVERT; 
-		TIMA1->COMMONREGS.ODIS =  GPTIMER_ODIS_C0CCP3_CCP_OUTPUT_LOW;
-	}	
-	
-	if (pin == 3)//configure GPIOB PB13 channel 3 
-	{
-		IOMUX->SECCFG.PINCM[IOMUX_PINCM30]|= (0x80 | IOMUX_PINCM30_PF_TIMA0_CCP3 );
-		//set value to configure duty cycle
-		TIMA1->COUNTERREGS.CC_23[1] |=  (uint16_t)((double)period * (double)(1.0 - percentDutyCycle));
-		//set COC for compare mode
-		TIMA1->COUNTERREGS.CCCTL_23[1] &= ~(GPTIMER_CCCTL_23_COC_MASK);
-		//Configure CCP as an output for the CC block by setting respective bit in the CCPD registers. For instance, if
-		//TIMx Channel 0 is an output, set CCPD.C0CCP0 = 1
-		TIMA1->COMMONREGS.CCPD |= GPTIMER_CCPD_C0CCP3_OUTPUT;
-		//CCP output action settings”
-		TIMA1->COUNTERREGS.CCACT_23[1] |= (GPTIMER_CCACT_23_LACT_CCP_HIGH | GPTIMER_CCACT_23_CDACT_CCP_LOW); 
-    //set CCPO = 0 to select the signal generator output.
-		TIMA1->COUNTERREGS.OCTL_23[1] = GPTIMER_OCTL_23_CCPO_FUNCVAL;
-		TIMA1->COUNTERREGS.IFCTL_23[1] = GPTIMER_IFCTL_23_INV_NOINVERT; 
-		TIMA1->COMMONREGS.ODIS =  GPTIMER_ODIS_C0CCP2_CCP_OUTPUT_LOW;
 	}
 	TIMA1->COUNTERREGS.CTRCTL |= GPTIMER_CTRCTL_EN_ENABLED;
 }
@@ -607,18 +551,6 @@ void TIMA1_PWM_DutyCycle(uint8_t pin, double percentDutyCycle)
 	 if (pin == 0)
 	 {
 		 TIMA1->COUNTERREGS.CC_01[0] = (uint16_t)((double)global_period_tim1 * (double)(1.0 - percentDutyCycle));
-	 }
-	 if (pin == 1)
-	 {
-		 TIMA1->COUNTERREGS.CC_01[1] = (uint16_t)((double)global_period_tim1 * (double)(1.0 - percentDutyCycle));
-	 }
-	 if (pin == 2)
-	 {
-		 TIMA1->COUNTERREGS.CC_23[0] = (uint16_t)((double)global_period_tim1 * (double)(1.0 - percentDutyCycle));
-	 }
-	 if (pin == 3)
-	 {
-		 TIMA1->COUNTERREGS.CC_23[1] = (uint16_t)((double)global_period_tim1 * (double)(1.0 - percentDutyCycle));
 	 }
 }
 
