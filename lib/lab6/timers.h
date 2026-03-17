@@ -54,7 +54,7 @@ void TIMA0_PWM_freq_init(uint8_t pin, uint32_t frequency, double percentDutyCycl
  * @note Store period to be able to adjust duty cycle percentage later
 */
 void TIMA1_PWM_init(uint8_t pin, uint32_t period, uint32_t prescaler, double percentDutyCycle);
-
+void TIMA1_PWM_freq_init(uint8_t pin, uint32_t frequency, double percentDutyCycle);
 
 /**
  * @brief Change PWM duty cycle for all Timer A0 channels
