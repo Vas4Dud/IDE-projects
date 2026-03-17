@@ -5,13 +5,16 @@
 
 
 
-void init_dc_motor(uint32_t frequency, double percentDutyCycle);
+void init_dc_motor0(uint32_t frequency, double percentDutyCycle);
+void init_dc_motor1(uint32_t frequency, double percentDutyCycle);
 
-void dc_forward(double percentDutyCycle);
+void dc0_forward(double percentDutyCycle);
 
-void dc_backwards(double percentDutyCycle);
+void dc0_backwards(double percentDutyCycle);
 
+void dc1_forward(double percentDutyCycle);
 
+void dc1_backwards(double percentDutyCycle);
 
 
 #endif // _TIMERS_H_

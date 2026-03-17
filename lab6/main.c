@@ -104,31 +104,31 @@ void spin_stepper(int forward_true){
 
 
 int main(){
-	init_dc_motor(10000,0.20);
+	init_dc_motor0(10000,0.20);
 	double duty_cycle_iter = 0.0;
 	while(1){
 		//go 0 to 100 forward
 		while(duty_cycle_iter<1){
-			dc_forward(duty_cycle_iter);
+			dc0_forward(duty_cycle_iter);
 			duty_cycle_iter+=0.01;
 			delay(10);
 		}
 		//go 100 to 0 forward
 		while (duty_cycle_iter>0){
-			dc_forward(duty_cycle_iter);
+			dc0_forward(duty_cycle_iter);
 			duty_cycle_iter-=0.01;
 			delay(10);
 		}
 		
 		//go 0 to 100 backwards
 		while(duty_cycle_iter<1){
-			dc_backwards(duty_cycle_iter);
+			dc0_backwards(duty_cycle_iter);
 			duty_cycle_iter+=0.01;
 			delay(10);
 		}
 		//go 100 to 0 backwards
 		while (duty_cycle_iter>0){
-			dc_backwards(duty_cycle_iter);
+			dc0_backwards(duty_cycle_iter);
 			duty_cycle_iter-=0.01;
 			delay(10);
 		}
