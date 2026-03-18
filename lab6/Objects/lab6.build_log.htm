@@ -28,6 +28,8 @@ Project File Date:  03/16/2026
 *** Using Compiler 'V6.14', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Target 1'
 assembling startup_mspm0g350x_uvision.s...
+compiling sysctl.c...
+compiling DC_motor.c...
 main.c(19): warning: no previous prototype for function 'init_stepper_motor' [-Wmissing-prototypes]
 void init_stepper_motor(){
      ^
@@ -46,15 +48,13 @@ main.c(48): warning: function 'spin_stepper' could be declared with attribute 'n
 void spin_stepper(int forward_true){
                                    ^
 main.c(110): warning: code will never be executed [-Wunreachable-code]
-        init_dc_motor0(10000,0.20);
-        ^~~~~~~~~~~~~~
+        double duty_cycle_iter = 0.0;
+                                 ^~~
 4 warnings generated.
 compiling main.c...
-compiling DC_motor.c...
-compiling sysctl.c...
 compiling timers.c...
 linking...
-Program Size: Code=1240 RO-data=224 RW-data=4 ZI-data=1124  
+Program Size: Code=3240 RO-data=224 RW-data=4 ZI-data=1132  
 ".\Objects\lab6.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -77,7 +77,7 @@ Package Vendor: TexasInstruments
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.4.0
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

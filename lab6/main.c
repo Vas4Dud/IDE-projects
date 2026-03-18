@@ -105,9 +105,8 @@ void spin_stepper(int forward_true){
 
 int main(){	
 	init_stepper_motor();
-	spin_stepper(true);
-	while(1);
 	init_dc_motor0(10000,0.20);
+	while(1);
 	double duty_cycle_iter = 0.0;
 	while(1){
 		//go 0 to 100 forward
