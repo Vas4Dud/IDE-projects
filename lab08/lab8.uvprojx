@@ -423,6 +423,11 @@
               <FileType>5</FileType>
               <FilePath>..\lib\lab2\uart.h</FilePath>
             </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lab05\timers.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

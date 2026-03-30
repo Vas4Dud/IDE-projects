@@ -29,27 +29,35 @@ Project File Date:  03/30/2026
 Rebuild target 'Target 1'
 assembling startup_mspm0g350x_uvision.s...
 compiling sysctl.c...
-main.c(9): warning: no previous prototype for function 'collect_sample' [-Wmissing-prototypes]
+main.c(10): warning: no previous prototype for function 'collect_sample' [-Wmissing-prototypes]
 void collect_sample(){
      ^
-main.c(9): note: declare 'static' if the function is not intended to be used outside of this translation unit
+main.c(10): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void collect_sample(){
 ^
 static 
-main.c(22): warning: no previous prototype for function 'calculate_and_display' [-Wmissing-prototypes]
+main.c(20): warning: no previous prototype for function 'calculate_and_display' [-Wmissing-prototypes]
 void calculate_and_display(){
      ^
-main.c(22): note: declare 'static' if the function is not intended to be used outside of this translation unit
+main.c(20): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void calculate_and_display(){
 ^
 static 
-2 warnings generated.
+main.c(29): warning: no previous prototype for function 'TIMG12_IRQHandler' [-Wmissing-prototypes]
+void TIMG12_IRQHandler(void){
+     ^
+main.c(29): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void TIMG12_IRQHandler(void){
+^
+static 
+3 warnings generated.
 compiling main.c...
 compiling adc12.c...
 compiling uart.c...
+compiling timers.c...
 linking...
-Program Size: Code=8456 RO-data=532 RW-data=4 ZI-data=1372  
-".\Objects\lab8.axf" - 0 Error(s), 2 Warning(s).
+Program Size: Code=7432 RO-data=404 RW-data=4 ZI-data=5132  
+".\Objects\lab8.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
