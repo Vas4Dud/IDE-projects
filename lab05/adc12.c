@@ -9,28 +9,8 @@
  * @date 
  * ******************************************************************************
 */
-
-#ifndef _ADC12_H_
-#define _ADC12_H_
-
-#include <stdint.h>
 #include <ti/devices/msp/msp.h>
-/**
- * @brief Initialize ADC0
-*/
-void ADC0_init(void);
-
-
-/**
- * @brief Retrieve the value from the ADC0
- * @note The ADC channel in use is set during initialization
- *       The channel is not the same as where the module stores the value
- * @return ADC0 processed value
-*/
-uint32_t ADC0_getVal(void);
-
-
-#endif // _ADC12_H_
+#include "lab5/adc12.h"
 
 void ADC0_init(void)
 {

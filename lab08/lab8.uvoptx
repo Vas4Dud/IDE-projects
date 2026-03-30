@@ -134,13 +134,13 @@
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
-          <Key>DLGUARM</Key>
-          <Name></Name>
+          <Key>CMSIS_AGDI</Key>
+          <Name>-X"" -O206 -S0 -C0 -P00000000 -N00("ARM CoreSight SW-DP") -D00(6BA02477) -L00(0) -TO65554 -TC10000000 -TT10000000 -TP20 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20200000 -FC8000 -FN1 -FF0MSPM0G1X0X_G3X0X_MAIN_128KB.FLM -FS00 -FL020000 -FP0($$Device:MSPM0G3507$02_Flash_Programming\FlashARM\MSPM0G1X0X_G3X0X_MAIN_128KB.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
-          <Key>CMSIS_AGDI</Key>
-          <Name>-X"Any" -UAny -O206 -S9 -C0 -P00000000 -N00("") -D00(00000000) -L00(0) -TO65554 -TC10000000 -TT10000000 -TP20 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20200000 -FC8000 -FN1 -FF0MSPM0G1X0X_G3X0X_MAIN_128KB.FLM -FS00 -FL020000 -FP0($$Device:MSPM0G3507$02_Flash_Programming\FlashARM\MSPM0G1X0X_G3X0X_MAIN_128KB.FLM)</Name>
+          <Key>DLGUARM</Key>
+          <Name></Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -152,9 +152,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>81</LineNumber>
+          <LineNumber>40</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>776</Address>
+          <Address>6314</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -163,7 +163,23 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\lab6\main.c\81</Expression>
+          <Expression>\\lab8\main.c\40</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>41</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <Tracepoint>
@@ -220,49 +236,13 @@
 
   <Group>
     <GroupName>Source Group 1</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>1</GroupNumber>
       <FileNumber>1</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\main.c</PathWithFileName>
-      <FilenameWithoutPath>main.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>2</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\DC_motor.c</PathWithFileName>
-      <FilenameWithoutPath>DC_motor.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>3</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\DC_motor.h</PathWithFileName>
-      <FilenameWithoutPath>DC_motor.h</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>4</FileNumber>
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -274,7 +254,19 @@
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
-      <FileNumber>5</FileNumber>
+      <FileNumber>2</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\main.c</PathWithFileName>
+      <FilenameWithoutPath>main.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>3</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -294,13 +286,37 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>2</GroupNumber>
+      <FileNumber>4</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\lib\lab5\adc12.h</PathWithFileName>
+      <FilenameWithoutPath>adc12.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>5</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\lab05\adc12.c</PathWithFileName>
+      <FilenameWithoutPath>adc12.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
       <FileNumber>6</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\timers.c</PathWithFileName>
-      <FilenameWithoutPath>timers.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\lab2\uart.c</PathWithFileName>
+      <FilenameWithoutPath>uart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -311,8 +327,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\lab6\timers.h</PathWithFileName>
-      <FilenameWithoutPath>timers.h</FilenameWithoutPath>
+      <PathWithFileName>..\lib\lab2\uart.h</PathWithFileName>
+      <FilenameWithoutPath>uart.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
