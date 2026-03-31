@@ -3,34 +3,40 @@
 #include "lab2/uart.h"
 #include <stdio.h>
 #include "lab5/timers.h"
-static uint32_t samples[1000];
-static unsigned long sample_index = 0;
-static uint8_t display_ready = 0;
+
+#define MIN_INTERVAL 250  // 250 ms = 240 BPM max
+
+static uint32_t previous_read = 0;
+static int previous_slope = 0;
+static uint32_t prev_peak_time = 0;
+static volatile uint32_t current_time = 0;
+static volatile double bpm = 0.0;
+
+void collect_sample(void);
 
 void collect_sample(){
+	current_time++;
 	uint32_t read_val = ADC0_getVal();
-	samples[sample_index] = read_val;
-	sample_index++;
-	if (sample_index == 1000){
-		display_ready = 1;
-		sample_index = 0;
+	int slope = (int)read_val - (int)previous_read;
+	if (previous_slope > 0 && slope<=0){//rising -> falling = peak
+		uint32_t time_delta = current_time - prev_peak_time;
+		if (time_delta > MIN_INTERVAL) {
+			bpm = (double)60000/(double)time_delta;
+			prev_peak_time = current_time;
+		}
 	}
+	previous_read = read_val;
+	previous_slope = slope;
 }
 
-void calculate_and_display(){
-	//find max value and count how many times it occurs
-	double bpm = samples[0];//placeholder
-	
+static void print_bpm(){
 	char display_str[128];
 	snprintf(display_str, 127, "Heart Rate is %f BPM\r\n",bpm);
 	UART0_put(display_str);
-	display_ready = 0;
-}	
+}
 
 void TIMG12_IRQHandler(void){
-	if(display_ready == 0){
-		collect_sample();
-	}
+	collect_sample();
 }
 
 int main(){
@@ -39,9 +45,8 @@ int main(){
 	UART0_init();
 	UART0_put("I am a heartrate monitor\r\n");
 	while(1){
-		if(display_ready == 1){
-			calculate_and_display();
-			display_ready = 0;
-	}
+		if(current_time%500 == 0){
+			print_bpm();
+		}
 	}
 }
